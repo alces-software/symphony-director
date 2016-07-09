@@ -51,7 +51,7 @@ class symphonydirector::customization (
       file_line {"syslog-remote":
         path=>"/etc/rsyslog.conf",
         ensure=>present,
-        line=>"*.* @symphony-director:514",
+        line=>"*.* @director:514",
         notify=>Service['rsyslog'],
       }
       service {"rsyslog":

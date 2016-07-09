@@ -23,11 +23,7 @@ symphonydirector::mail::externalrelay: smtp.alces-software.com
 symphonydirector::mail::maildomain: mgt.symphony.local
 #Mail from address - this usually needs to be an email address your relay server will relay for
 symphonydirector::mail::mailfrom: test@alces-software.com
-#Symphony APP NFS mounts
 symphony::nfsimports:
- 'symphony-app.mgt.symphony.local:/opt/gridware':
-   target: '/opt/gridware'
-   options: intr,rsize=32768,wsize=32768,_netdev
 # 'storage1.prv.<CLUSTERNAME>.compute.estate:/export/gridware':
 #   target: '/opt/gridware'
 #   options: intr,rsize=32768,wsize=32768,_netdev
@@ -37,7 +33,7 @@ symphony::nfsimports:
 # 'storage1.prv.<CLUSTERNAME>.compute.estate:/export/users':
 #   target: '/users'
 #   options: intr,rsize=32768,wsize=32768,_netdev
-#Enable configuration of yum repos via pulp on symphony-repo (default:true)
+#Enable configuration of yum repos via pulp on repo (default:true)
 symphonyrepo::yum::install_repoconfigs: true
 #which symphony repos to enable
 symphonyrepo::yum::enable_symphonyrepos:

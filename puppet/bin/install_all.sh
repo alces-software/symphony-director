@@ -23,7 +23,7 @@
 # http://www.alces-software.org/symphony                                       #
 #                                                                              #
 ################################################################################
-SYMPHONY_HOME=/var/lib/symphony/
+SYMPHONY_HOME=/opt/symphony/director/
 
 $SYMPHONY_HOME/puppet/bin/install_environments.sh
 

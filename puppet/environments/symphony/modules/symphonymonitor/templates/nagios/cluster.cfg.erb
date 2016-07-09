@@ -51,15 +51,15 @@ define service{
 # Nagios base config MUST have at least one node defined, so we define ourselves here
 define host{
         use                     generic
-        host_name               symphony-monitor
-        alias                   symphony-monitor.mgt.symphony.local
-        address                 symphony-monitor
+        host_name               monitor
+        alias                   monitor.bld
+        address                 monitor
         }
 
 # Nagios base config MUST also have at least one service
 define service {
         use                     nrpe-service
-        host_name               symphony-monitor
+        host_name               monitor
         service_description     Example service
         check_command           check_nrpe!check_nrpe
 	register		1

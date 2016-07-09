@@ -23,12 +23,12 @@
 # http://www.alces-software.org/symphony                                       #
 #                                                                              #
 ################################################################################
-SYMPHONY_HOME=/var/lib/symphony/
+SYMPHONY_HOME=/opt/symphony/director/
 
 . $SYMPHONY_HOME/etc/vars.sh
 
 
-yum -e 0 -y --config http://symphony-repo/configs/$TREE/yum.conf --enablerepo epel --enablerepo puppet-base --enablerepo puppet-deps install puppet
+yum -e 0 -y --config http://repo/configs/$TREE/yum.conf --enablerepo epel --enablerepo puppet-base --enablerepo puppet-deps install puppet
 
 cat << EOF > /etc/puppet/puppet.conf
 [main]
@@ -41,17 +41,17 @@ pluginsync      = true
 report          = false
 ignoreschedules = true
 daemon          = false
-ca_server       = symphony-director
+ca_server       = director
 certname        = `hostname -s`
 environment     = production
-server          = symphony-director
+server          = director
 EOF
 
 systemctl enable puppet
 
 #Generate puppet signing request (cobbler will sort out the rest)
-/usr/bin/puppet agent --test --waitforcert 0 --server symphony-director --environment symphony
+/usr/bin/puppet agent --test --waitforcert 0 --server director --environment symphony
 
 echo "==========================================================================="
-echo "Please login to symphony-director and sign the certificate for this machine"
+echo "Please login to director and sign the certificate for this machine"
 echo "# puppet cert sign `hostname -s`"

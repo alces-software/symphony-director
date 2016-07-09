@@ -23,8 +23,8 @@
 # http://www.alces-software.org/symphony                                       #
 #                                                                              #
 ################################################################################
-SYMPHONY_HOME=/var/lib/symphony/
-ENV_HOME=/var/lib/symphony/puppet/environments/symphony/
+SYMPHONY_HOME=/opt/symphony/director/
+ENV_HOME=$SYMPHONY_HOME/puppet/environments/symphony/
 
 $ENV_HOME/modules/symphonyrepo/fetch_templates.sh
 cd $ENV_HOME/modules/symphony/

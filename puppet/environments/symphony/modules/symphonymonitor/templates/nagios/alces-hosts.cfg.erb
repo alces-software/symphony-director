@@ -1,32 +1,32 @@
 
 define host{
         use                     generic
-        host_name               symphony-director
-        alias                   symphony-director.mgt.symphony.local
-        address                 symphony-director
+        host_name               director
+        alias                   director.bld
+        address                 director
         }
 
 define host{
         use                     generic
-        host_name               symphony-repo
-        alias                   symphony-repo.mgt.symphony.local
-        address                 symphony-repo
+        host_name               repo
+        alias                   repo.bld
+        address                 repo
         }
 
 # This machine is defined in the base nagios config (/etc/nagios/objects/cluster.cfg)
 # so don't define it again.
 #define host{
 #        use                     generic
-#        host_name               symphony-monitor
-#        alias                   symphony-monitor.mgt.symphony.local
-#        address                 symphony-monitor
+#        host_name               monitor
+#        alias                   monitor.bld
+#        address                 monitor
 #        }
 
 define host{
         use                     generic
-        host_name               directory1
-        alias                   directory1.mgt.symphony.local
-        address                 directory1
+        host_name               directory
+        alias                   directory.bld
+        address                 directory
         }
 
 ###################################################################################

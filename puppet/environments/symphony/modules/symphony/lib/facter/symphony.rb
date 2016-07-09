@@ -32,7 +32,7 @@ end
 
 Facter.add("symphony_directorrole") do
   setcode do
-    if Facter.value('hostname') == 'symphony-director'
+    if Facter.value('hostname') == 'director'
       'master'
     else
       'slave'
@@ -42,7 +42,7 @@ end
 
 Facter.add("symphony_reporole") do
   setcode do
-    if Facter.value('hostname') == 'symphony-repo'
+    if Facter.value('hostname') == 'repo'
       'master'
     else
       'slave'
@@ -52,7 +52,7 @@ end
 
 Facter.add("symphony_monitorrole") do
   setcode do
-    if Facter.value('hostname') == 'symphony-monitor'
+    if Facter.value('hostname') == 'monitor'
       'master'
     else
       'slave'

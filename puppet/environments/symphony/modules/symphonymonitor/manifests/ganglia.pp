@@ -24,7 +24,7 @@ class symphonymonitor::ganglia (
       $clusters = [
         {
           name     => "core",
-          address  => ['symphony-monitor:8659'],
+          address  => ['monitor:8659'],
         },
       ]
 

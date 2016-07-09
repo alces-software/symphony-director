@@ -42,14 +42,14 @@ define service{
 
 define service{
         use                     nrpe-service
-        host			symphony-repo
+        host			repo
         service_description     storage DB partition
         check_command           check_nrpe!check_disk_db
 }
 
 define service{
         use                     nrpe-service
-        host			symphony-repo
+        host			repo
         service_description     storage pulp partition
         check_command           check_nrpe!check_disk_pulp
 }
