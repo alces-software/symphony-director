@@ -11,7 +11,7 @@ ONBOOT=yes
 IPADDR=10.78.254.1
 NETMASK=255.255.0.0
 NETWORK=10.78.0.0
-ZONE=build
+ZONE=bld
 NM_CONTROLLED=no
 DNS=10.78.254.1
 NOZEROCONF=yes
@@ -54,7 +54,7 @@ IPADDR=10.77.254.1
 NETMASK=255.255.0.0
 ONBOOT=yes
 PEERDNS=no
-ZONE=mgt
+ZONE=pub
 NM_CONTROLLED=no
 NOZEROCONF=yes
 EOF
@@ -88,33 +88,19 @@ cat << EOF > /etc/hosts
 10.77.254.1  director.pub.$CLUSTER.compute.estate symphony.local director.pub
 EOF
 
-
 #FIREWALL
-cat << EOF > /etc/sysconfig/iptables
-*nat
-:PREROUTING ACCEPT [0:0]
-:POSTROUTING ACCEPT [0:0]
-:OUTPUT ACCEPT [0:0]
--A POSTROUTING -o eth4 -j MASQUERADE
--A POSTROUTING -o eth0 -j MASQUERADE
-COMMIT
-*filter
-:INPUT ACCEPT [0:0]
-:FORWARD ACCEPT [0:0]
-:OUTPUT ACCEPT [0:0]
-#BUILD NETWORK FORWARDING TO EXTERNAL NETWORK
--A FORWARD -i eth4 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
--A FORWARD -i eth0 -o eth4 -j ACCEPT
--A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
--A INPUT -p icmp -j ACCEPT
--A INPUT -i lo -j ACCEPT
-#APPLIANCERULES#
-#SSH
--A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
--A INPUT -j REJECT --reject-with icmp-host-prohibited
--A FORWARD -j REJECT --reject-with icmp-host-prohibited
-COMMIT
-EOF
+systemctl disable iptables
+systemctl enable firewalld
+systemcrl stop iptables
+systemctl restart firewalld
+firewall-cmd --zone=extternal --add-masquerade --permanent
+firewall-cmd --new-zone bld --permanent
+firewall-cmd --new-zone prv --permanent
+firewall-cmd --new-zone mgt --permanent
+firewall-cmd --new-zone pub --permanent
+
+firewall-cmd --add-service ssh --zone bld --permanent
+firewall-cmd --reload
 
 #YUM
 yum -y --config https://raw.githubusercontent.com/alces-software/symphony4/master/etc/yum/centos7-base.conf update
