@@ -12,6 +12,7 @@ write_files:
      #Symphony config data
      CLUSTER=cluster
      ROOTPASSWORD="A1cesS0ftwar3"
+     ADMINPASSWORD="A1cesS0ftwar3"
    path: /etc/symphony.cfg
    permissions: '0600'
    owner: root:root
