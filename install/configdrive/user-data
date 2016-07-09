@@ -1,0 +1,17 @@
+#cloud-config
+system_info:
+  default_user:
+    name: symphony
+    lock_passwd: true
+    gecos: Symphony Administrator
+    groups: [wheel, adm, systemd-journal]
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    shell: /bin/bash
+write_files:
+-  content: |
+     #Symphony config data
+     CLUSTER=cluster
+     ROOTPASSWORD="A1cesS0ftwar3"
+   path: /etc/symphony.cfg
+   permissions: '0600'
+   owner: root:root
