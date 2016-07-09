@@ -33,7 +33,7 @@
     <controller type='usb' index='0'>
     </controller>
     <interface type='bridge'>
-      <source bridge='ext'/>
+      <source bridge='build'/>
       <model type='virtio'/>
     </interface>
     <interface type='bridge'>
@@ -41,11 +41,11 @@
       <model type='virtio'/>
     </interface>
     <interface type='bridge'>
-      <source bridge='prv'/>
+      <source bridge='mgt'/>
       <model type='virtio'/>
     </interface>
     <interface type='bridge'>
-      <source bridge='prv'/>
+      <source bridge='dmz'/>
       <model type='virtio'/>
     </interface>
     <interface type='bridge'>
