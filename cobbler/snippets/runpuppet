@@ -1,0 +1,5 @@
+if [ -z "$skip_puppet" ]; then
+realhost=$hostname
+puppethost=\${realhost,,}
+puppet agent -t --environment=symphony --server symphony-director --certname \$puppethost
+fi
