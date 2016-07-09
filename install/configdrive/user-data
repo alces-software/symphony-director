@@ -16,12 +16,10 @@ write_files:
    path: /etc/symphony.cfg
    permissions: '0600'
    owner: root:root
--  content: |
-     IPV6INIT=no
-     BOOTPROTO=dhcp
-     DEVICE=eth4
-     ONBOOT=yes
-     PEERDNS=yes
-   path: /etc/sysconfig/network-scripts/ifcfg-eth4
-   permissions: '0644'
-   owner: root:root
+bootcmd:
+ - sed -e 's/eth0/eth4/g' /etc/sysconfig/network-scripts/ifcfg-eth0 > /etc/sysconfig/network-scripts/ifcfg-eth4
+runcmd:
+ - ifup eth4
+ - ifconfig eth4 > /dev/console
+ - service iptables stop
+ - echo 'root:moose' | chpasswd
