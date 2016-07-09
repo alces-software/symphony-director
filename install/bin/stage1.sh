@@ -93,7 +93,7 @@ systemctl disable iptables
 systemctl enable firewalld
 systemctl stop iptables
 systemctl restart firewalld
-firewall-cmd --zone=extternal --add-masquerade --permanent
+firewall-cmd --zone=external --add-masquerade --permanent
 firewall-cmd --new-zone bld --permanent
 firewall-cmd --new-zone prv --permanent
 firewall-cmd --new-zone mgt --permanent
