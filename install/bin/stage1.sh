@@ -82,7 +82,7 @@ cat << EOF > /etc/hosts
 ::1 localhost6.localdomain6 localhost6
 
 #Symphony
-10.78.254.1  director.bld.$CLUSTER.compute.estate director.build
+10.78.254.1  director.bld.$CLUSTER.compute.estate director.build director
 10.110.254.1 director.prv.$CLUSTER.compute.estate director.prv
 10.111.254.1 director.mgt.$CLUSTER.compute.estate director.mgt
 10.77.254.1  director.pub.$CLUSTER.compute.estate symphony.local director.pub
