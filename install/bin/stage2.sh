@@ -179,13 +179,13 @@ if [ $PUPPET -gt 0 ]; then
     localconfig = \$vardir/localconfig
     report      = true
     pluginsync  = true
-    certname    = director.bld.$CLUSTER.compute.estate
-    server      = director.bld.$CLUSTER.compute.estate
+    certname    = director
+    server      = director
     listen      = false
     environment = production
 [master]
     reports     = store
-    certname    = director.bld.$CLUSTER.compute.estate
+    certname    = director
     ca = true
     environmentpath = \$confdir/environments/
 EOF
@@ -238,8 +238,8 @@ Listen 8140
 
     SSLProtocol             All -SSLv2
     SSLCipherSuite          HIGH:!ADH:RC4+RSA:-MEDIUM:-LOW:-EXP
-    SSLCertificateFile      /var/lib/puppet/ssl/certs/director.bld.$CLUSTER.compute.estate.pem
-    SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/director.bld.$CLUSTER.compute.estate.pem
+    SSLCertificateFile      /var/lib/puppet/ssl/certs/director.pem
+    SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/director.pem
     SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
     SSLCACertificateFile    /var/lib/puppet/ssl/ca/ca_crt.pem
     SSLCARevocationFile     /var/lib/puppet/ssl/ca/ca_crl.pem
