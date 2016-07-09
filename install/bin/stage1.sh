@@ -91,7 +91,7 @@ EOF
 #FIREWALL
 systemctl disable iptables
 systemctl enable firewalld
-systemcrl stop iptables
+systemctl stop iptables
 systemctl restart firewalld
 firewall-cmd --zone=extternal --add-masquerade --permanent
 firewall-cmd --new-zone bld --permanent
