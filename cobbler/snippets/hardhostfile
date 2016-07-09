@@ -2,7 +2,7 @@
 cat << EOD >> /etc/hosts
 
 #SYMPHONY
-10.78.254.1	symphony-director.mgt.symphony.local symphony-director
-10.78.254.3	symphony-repo.mgt.symphony.local symphony-repo
-10.78.254.4	symphony-monitor.mgt.symphony.local symphony-monitor
+10.78.254.1	director director.bld
+10.78.254.3	repo repo.bld
+10.78.254.4	monitor monitor.bld
 EOD

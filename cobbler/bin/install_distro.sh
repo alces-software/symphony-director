@@ -41,8 +41,8 @@ case $GROUP in
   centos6)
     case $REPOBASE in
       local)
-        BASEURL="http://symphony-repo/pulp/repos/centos/6/os/images/pxeboot/"
-        INSTALLURL="http://symphony-repo/pulp/repos/centos/6/os/"
+        BASEURL="http://repo/pulp/repos/centos/6/os/images/pxeboot/"
+        INSTALLURL="http://repo/pulp/repos/centos/6/os/"
         ;;
       alces)
         BASEURL="http://repo.alces-software.com/pulp/repos/centos/6/os/images/pxeboot/"
@@ -64,8 +64,8 @@ case $GROUP in
   sl6)
     case $REPOBASE in
       local)
-        BASEURL="http://symphony-repo/pulp/repos/sl/6/os/images/pxeboot/"
-        INSTALLURL="http://symphony-repo/pulp/repos/sl/6/os/"
+        BASEURL="http://repo/pulp/repos/sl/6/os/images/pxeboot/"
+        INSTALLURL="http://repo/pulp/repos/sl/6/os/"
         ;;
       alces)
         BASEURL="http://repo.alces-software.com/pulp/repos/sl/6/os/images/pxeboot/"
@@ -88,8 +88,8 @@ case $GROUP in
     #Get distro files
     case $REPOBASE in
       local)
-        BASEURL="http://symphony-repo/static/rhel/6/boot/images/pxeboot/"
-        INSTALLURL="http://symphony-repo/static/rhel/6/boot/images/pxeboot/"
+        BASEURL="http://repo/static/rhel/6/boot/images/pxeboot/"
+        INSTALLURL="http://repo/static/rhel/6/boot/images/pxeboot/"
         ;;
       *)
         #Alces
@@ -108,8 +108,8 @@ case $GROUP in
     #Get distro files
     case $REPOBASE in
       local)
-        BASEURL="http://symphony-repo/static/rhelcomputenode/6/boot/images/pxeboot/"
-        INSTALLURL="http://symphony-repo/static/rhelcomputenode/6/boot/"
+        BASEURL="http://repo/static/rhelcomputenode/6/boot/images/pxeboot/"
+        INSTALLURL="http://repo/static/rhelcomputenode/6/boot/"
         ;;
       *)
         #Alces
@@ -127,8 +127,8 @@ case $GROUP in
   centos7)
     case $REPOBASE in
       local)
-        BASEURL="http://symphony-repo/pulp/repos/centos/7/os/images/pxeboot/"
-        INSTALLURL="http://symphony-repo/pulp/repos/centos/7/os/"
+        BASEURL="http://repo/pulp/repos/centos/7/os/images/pxeboot/"
+        INSTALLURL="http://repo/pulp/repos/centos/7/os/"
         ;;
       alces)
         BASEURL="http://repo.alces-software.com/pulp/repos/centos/7/os/images/pxeboot/"
@@ -150,8 +150,8 @@ case $GROUP in
   sl7)
     case $REPOBASE in
       local)
-        BASEURL="http://symphony-repo/pulp/repos/sl/7/os/images/pxeboot/"
-        INSTALLURL="http://symphony-repo/pulp/repos/sl/7/os/"
+        BASEURL="http://repo/pulp/repos/sl/7/os/images/pxeboot/"
+        INSTALLURL="http://repo/pulp/repos/sl/7/os/"
         ;;
       alces)
         BASEURL="http://repo.alces-software.com/pulp/repos/sl/7/os/images/pxeboot/"

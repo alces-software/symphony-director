@@ -1,7 +1,7 @@
 if ! [ -z "$novainstall" ]; then
   cat << EOF > /var/lib/symphony/firstrun/scripts/novainstall.bash
 mkdir -p /opt/admin
-mount -t nfs symphony-director:/opt/admin /opt/admin
+mount -t nfs director:/opt/admin /opt/admin
 /opt/admin/alces/junoconfigs/bin/install-nova.sh $novainstall
 sync
 umount /opt/admin
