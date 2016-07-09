@@ -1,0 +1,70 @@
+define host{
+	name				generic
+	use				linux-server
+	register			0
+	notifications_enabled		1
+}
+
+define service{
+        name                            nrpe-service           ; The name of this service template
+        use                             generic-service         ; Inherit default values from the generic-service definition
+        check_period                    24x7                    ; The service can be checked at any time of the day
+        max_check_attempts              4                       ; Re-check the service up to 4 times in order to determine its final (hard) state
+        normal_check_interval           5                       ; Check the service every 5 minutes under normal conditions
+        retry_check_interval            1                       ; Re-check the service every minute until a hard state can be determined
+        contact_groups                  admins                  ; Notifications get sent out to everyone in the 'admins' group
+        notification_options            w,u,c,r                 ; Send notifications about warning, unknown, critical, and recovery events
+        notification_interval           60                      ; Re-notify about service problems every hour
+        notification_period             24x7                    ; Notifications can be sent out at any time
+        register                        0                       ; DONT REGISTER THIS DEFINITION - ITS NOT A REAL SERVICE, JUST A TEMPLATE!
+        }
+
+define service{
+        name                            daily-service           ; The name of this service template
+        use                             generic-service         ; Inherit default values from the generic-service definition
+        check_period                    24x7                    ; The service can be checked at any time of the day
+        max_check_attempts              4                       ; Re-check the service up to 4 times in order to determine its final (hard) state
+        normal_check_interval           1440                    ; Check the service every day under normal conditions
+        retry_check_interval            1                       ; Re-check the service every minute until a hard state can be determined
+        contact_groups                  admins                  ; Notifications get sent out to everyone in the 'admins' group
+        notification_options            w,u,c,r                 ; Send notifications about warning, unknown, critical, and recovery events
+        notification_interval           1440                    ; Re-notify about service problems every day
+        notification_period             24x7                    ; Notifications can be sent out at any time
+        register                        0                       ; DONT REGISTER THIS DEFINITION - ITS NOT A REAL SERVICE, JUST A TEMPLATE!
+        }
+
+define service{
+        name                            hourly-service          ; The name of this service template
+        use                             generic-service         ; Inherit default values from the generic-service definition
+        check_period                    24x7                    ; The service can be checked at any time of the day
+        max_check_attempts              4                       ; Re-check the service up to 4 times in order to determine its final (hard) state
+        normal_check_interval           60                      ; Check the service every hour under normal conditions
+        retry_check_interval            30                      ; Re-check the service every 30 mins until a hard state can be determined
+        contact_groups                  admins                  ; Notifications get sent out to everyone in the 'admins' group
+        notification_options            w,u,c,r                 ; Send notifications about warning, unknown, critical, and recovery events
+        notification_interval           1440                    ; Re-notify about service problems every day
+        notification_period             24x7                    ; Notifications can be sent out at any time
+        register                        0                       ; DONT REGISTER THIS DEFINITION - ITS NOT A REAL SERVICE, JUST A TEMPLATE!
+        }
+
+
+# Nagios base config MUST have at least one node defined, so we define ourselves here
+define host{
+        use                     generic
+        host_name               symphony-monitor
+        alias                   symphony-monitor.mgt.symphony.local
+        address                 symphony-monitor
+        }
+
+# Nagios base config MUST also have at least one service
+define service {
+        use                     nrpe-service
+        host_name               symphony-monitor
+        service_description     Example service
+        check_command           check_nrpe!check_nrpe
+	register		1
+	notifications_enabled	0
+	active_checks_enabled	0
+	passive_checks_enabled	0
+}
+	

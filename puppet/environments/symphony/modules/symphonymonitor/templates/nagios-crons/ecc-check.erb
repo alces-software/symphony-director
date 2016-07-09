@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# script to check for ECC errors via IPMI network connections
+
+[[ ! -d /var/spool/nagios/ecc-check ]] && mkdir -p /var/spool/nagios/ecc-check && chown nagios /var/spool/nagios/ecc-check
+
+. /etc/profile
+
+rm -f /root/.freeipmi/sdr-cache/*
+for node in `nodeattr -s ipmicheck`
+do
+   ipmi-sel -D LAN_2_0 -h $node.bmc 2> /dev/null > /var/spool/nagios/ecc-check/$node.ecc.out 2>&1
+done
