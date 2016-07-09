@@ -117,8 +117,8 @@ COMMIT
 EOF
 
 #YUM
-yum -y --config https://raw.githubusercontent.com/alces-software/symphony4/master/generic/etc/yum/centos7-base.conf update
-yum -y --config https://raw.githubusercontent.com/alces-software/symphony4/master/generic/etc/yum/centos7-base.conf install vim emacs yum-utils git
+yum -y --config https://raw.githubusercontent.com/alces-software/symphony4/master/etc/yum/centos7-base.conf update
+yum -y --config https://raw.githubusercontent.com/alces-software/symphony4/master/etc/yum/centos7-base.conf install vim emacs yum-utils git
 
 #DISABLE CLOUD-INIT (WE ONLY NEED IT ONCE)
 systemctl disable cloud-init
