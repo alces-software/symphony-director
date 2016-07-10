@@ -114,3 +114,5 @@ systemctl disable cloud-init-local
 
 echo "root:${ROOTPASSWORD}" | chpasswd
 
+#Allow root login with keys
+sed -i -e "s/^PermitRootLogin.*$/PermitRootLogin without-password/g" /etc/ssh/sshd_config
