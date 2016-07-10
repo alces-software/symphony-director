@@ -86,6 +86,10 @@ cat << EOF > /etc/hosts
 10.110.254.1 director.prv.$CLUSTER.compute.estate director.prv
 10.111.254.1 director.mgt.$CLUSTER.compute.estate director.mgt
 10.77.254.1  director.pub.$CLUSTER.compute.estate symphony.local director.pub
+
+10.78.254.2  directory
+10.78.254.3  repo
+10.78.254.4  monitor
 EOF
 
 #FIREWALL
