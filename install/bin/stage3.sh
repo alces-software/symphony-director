@@ -4,6 +4,7 @@
 
 COBBLER=1
 PUPPET=1
+DASH=1
 
 ############# START COBBLER ###################
 if [ $COBBLER -gt 0 ]; then
@@ -20,3 +21,10 @@ if [ $PUPPET -gt 0 ]; then
   puppet agent -t --environment=symphony
 fi
 ############# END PUPPET #####################
+
+############# START DASH ###################
+if [ $DASH -gt 0 ]; then
+  curl -L https://raw.githubusercontent.com/alces-software/symphony-management-dashboard/master/scripts/install | /bin/bash
+  sed -i -e "s/your cluster/$CLUSTER/g" /opt/symphony-management-dashboard/htdocs/index.html
+fi
+############# END DASH ###################
