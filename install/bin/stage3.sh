@@ -3,6 +3,7 @@
 . /etc/symphony.cfg
 
 COBBLER=1
+PUPPET=1
 
 ############# START COBBLER ###################
 if [ $COBBLER -gt 0 ]; then
@@ -10,3 +11,11 @@ if [ $COBBLER -gt 0 ]; then
 fi
 ############# END COBBLER ###################
 
+
+############# START PUPPET ###################
+if [ $PUPPET -gt 0 ]; then
+  /opt/symphony/director/puppet/bin/install_all.sh
+  systemctl restart httpd
+  puppet agent -t --environment=symphony
+fi
+############# END PUPPET #####################
