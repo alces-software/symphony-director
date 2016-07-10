@@ -24,7 +24,12 @@
 #                                                                              #
 ################################################################################
 
-SYMPHONY_REPO_URL="http://repo/configs/"
+#determine repo url
+if ( curl -s http://repo/configs/ > /dev/null ); then
+  SYMPHONY_REPO_URL="http://repo/configs/"
+else
+  SYMPHONY_REPO_URL="http://repo.alces-software.com/configs/"
+fi
 
 cd `dirname $0`
 if [ ! -d templates/yum ]; then
