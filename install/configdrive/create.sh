@@ -6,4 +6,4 @@ if ! [ `which genisoimage` ]; then
 fi
 
 BASEPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/"
-cd $BASEPATH && genisoimage -o symphony-config.iso -V cidata -r -J meta-data user-data
+cd $BASEPATH && genisoimage -o symphony-director-config.iso -V cidata -r -J meta-data user-data
