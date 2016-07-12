@@ -10,9 +10,9 @@ system_info:
 write_files:
 -  content: |
      #Symphony config data
-     CLUSTER=cluster
-     ROOTPASSWORD="A1cesS0ftwar3"
-     ADMINPASSWORD="A1cesS0ftwar3"
+     CLUSTER=%CLUSTER%
+     ROOTPASSWORD="%ROOTPASSWORD%"
+     ADMINPASSWORD="%ADMINPASSWORD%"
    path: /etc/symphony.cfg
    permissions: '0600'
    owner: root:root
