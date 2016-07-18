@@ -642,7 +642,7 @@ EOF
   cobbler sync
   #fix resolv.conf
   cat << EOF > /etc/resolv.conf
-search bld.cluster.compute.estate prv.cluster.compute.estate mgt.cluster.compute.estate pub.cluster.compute.estate cluster.compute.estate
+search bld.$CLUSTER.compute.estate prv.$CLUSTER.compute.estate mgt.$CLUSTER.compute.estate pub.$CLUSTER.compute.estate $CLUSTER.compute.estate
 nameserver 127.0.0.1  
 EOF
 fi
