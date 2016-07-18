@@ -277,7 +277,7 @@ fi
 if [ $COBBLER -gt 0 ]; then
   yum -y --config $YUMBASE --enablerepo=epel --enablerepo=cobbler install cobbler httpd dhcp fence-agents tftp xinetd tftp-server cobbler-web bind bind-utils bind-chroot
   #set default passwords
-  PASS=`echo "${ADMINPASSWORD}" | openssl passwd -1 -stdin`
+  PASS=`echo "${ROOTPASSWORD}" | openssl passwd -1 -stdin`
   sed -i /etc/cobbler/settings -e "s|^default_password_crypted.*|default_password_crypted: \"$PASS\"|g"
   #set master ip
   IP=`hostname -i`; sed -i /etc/cobbler/settings -e "s/^server:.*/server: $IP/g"
