@@ -32,24 +32,24 @@
     </disk>
     <controller type='usb' index='0'>
     </controller>
-    <interface type='bridge'>
-      <source bridge='build'/>
+    <interface type='%BUILDNETWORKTYPE%'>
+      <source %BUILDNETWORKTYPE%='%BUILDNETWORKNAME%'/>
       <model type='virtio'/>
     </interface>
-    <interface type='bridge'>
-      <source bridge='prv'/>
+    <interface type='%PRIVATENETWORKTYPE%'>
+      <source %PRIVATENETWORKTYPE%='%PRIVATENETWORKNAME%'/>
       <model type='virtio'/>
     </interface>
-    <interface type='bridge'>
-      <source bridge='mgt'/>
+    <interface type='%MANAGEMENTNETWORKTYPE%'>
+      <source %MANAGEMENTNETWORKTYPE%='%MANAGEMENTNETWORKNAME%'/>
       <model type='virtio'/>
     </interface>
-    <interface type='bridge'>
-      <source bridge='dmz'/>
+    <interface type='%DMZNETWORKTYPE%'>
+      <source %DMZNETWORKTYPE%='%DMZNETWORKNAME%'/>
       <model type='virtio'/>
     </interface>
-    <interface type='bridge'>
-      <source bridge='ext'/>
+    <interface type='%EXTERNALNETWORKTYPE%'>
+      <source %EXTERNALNETWORKTYPE%='%EXTERNALNETWORKNAME%'/>
       <model type='virtio'/>
     </interface>
     <serial type='pty'>
