@@ -1,4 +1,0 @@
-symphonyrepo::yum::enable_symphonyrepos:
- - epel
- - symphony
-symphony::nfsimports:
