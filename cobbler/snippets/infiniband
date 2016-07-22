@@ -81,6 +81,7 @@ if (lspci | grep -q 'Omni-Path'); then
 cd /var/lib/symphony/opainstall/
 tar -zxv --strip=1 -f /var/lib/symphony/opainstall/IntelOPA-IFS.RHEL7.tgz -C /var/lib/symphony/opainstall/
 ./INSTALL -i opa_stack -i ibacm -i intel_hfi -i oftools -i fastfabric -i delta_ipoib -i opafm -i opa_stack_dev -i ipoib
-yum -e 0 -y --config http://repo/configs/$tree/yum.conf --enablerepo epel install ipa-client ipa-admintools
+#toggle reboot flag
+touch /firstrun.reboot
 EOF
 fi
