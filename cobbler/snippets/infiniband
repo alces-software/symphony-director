@@ -74,8 +74,8 @@ fi
 if (lspci | grep -q 'Omni-Path'); then
   mkdir -p /var/lib/symphony/opainstall/
   curl http://repo/IntelOPA-IFS.RHEL7.tgz > /var/lib/symphony/opainstall/IntelOPA-IFS.RHEL7.tgz
-  yum --config http://repo/configs/$tree/yum.conf --enablerepo epel groupinstall "Development Tools" "Infiniband"
-  yum --config http://repo/configs/$tree/yum.conf --enablerepo epel install expect atlas kernel-devel bc
+  yum -y --config http://repo/configs/$tree/yum.conf --enablerepo epel groupinstall "Development Tools" "Infiniband"
+  yum -y --config http://repo/configs/$tree/yum.conf --enablerepo epel install expect atlas kernel-devel bc
 
   cat << EOF > /var/lib/symphony/firstrun/scripts/installOPA.bash
 cd /var/lib/symphony/opainstall/
