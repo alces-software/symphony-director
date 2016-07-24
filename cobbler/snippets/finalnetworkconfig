@@ -10,3 +10,13 @@ if [ $os_version == 'rhel7' ]; then
 fi
 
 systemctl disable firewalld
+
+#Fix Infiniband device type in config files
+find /etc/sysconfig/network-scripts/ -iname ifcfg-ib* | while read n; do
+  echo "Fixing up IB ifcfg: $n"
+  sed -i -e '/^TYPE=/{h;s/=.*/=Infiniband/};\${x;/^\$/{s//TYPE=Infiniband/;H};x}' $n
+  sed -i -e '/^LINKDELAY=/{h;s/=.*/=30/};\${x;/^\$/{s//LINKDELAY=30/;H};x}' $n
+done
+
+#Stop nouveau loading
+echo -ne "\nblacklist nouveau\n" >> /etc/modprobe.d/blacklist.conf
