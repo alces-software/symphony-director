@@ -81,6 +81,10 @@ if (lspci | grep -q 'Omni-Path'); then
 cd /var/lib/symphony/opainstall/
 tar -zxv --strip=1 -f /var/lib/symphony/opainstall/IntelOPA-IFS.RHEL7.tgz -C /var/lib/symphony/opainstall/
 ./INSTALL -i opa_stack -i ibacm -i intel_hfi -i oftools -i fastfabric -i delta_ipoib -i opafm -i opa_stack_dev -i ipoib
+#clean yum after opa install does some nasty
+yum clean all
+#hack to wait extra time to allow omnipath modules to be loaded
+sed -ie "/^\. \/etc\/init.d\/functions$/ i\#Wait for ipoib to be ready\nsleep 20" /etc/sysconfig/network-scripts/ifup-ib
 #toggle reboot flag
 touch /firstrun.reboot
 EOF
