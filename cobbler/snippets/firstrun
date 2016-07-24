@@ -9,8 +9,8 @@ function fr {
   echo "Running Firstrun scripts.."
   if [ -f /var/lib/symphony/firstrun/RUN ]; then
     for script in \`find /var/lib/symphony/firstrun/scripts -type f -iname *.bash\`; do 
-      echo "Running \\$script.."
-      /bin/bash \\$script >> /root/symphony-firstrun.log
+      echo "Running \\$script.." >> /root/symphony-firstrun.log 2>&1
+      /bin/bash \\$script >> /root/symphony-firstrun.log 2>&1
     done
     rm -f /var/lib/symphony/firstrun/RUN
   fi
