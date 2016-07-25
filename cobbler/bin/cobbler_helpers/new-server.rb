@@ -107,6 +107,26 @@ end
 # Proceed to preparation and building of nodes
 if !validation_error
 
+  # Read site config file into environment variables
+  File.readline "#{Dir.pwd}/config/site" do |line|
+    key, value = line.split '='
+    ENV[key] = value
+  end
+
+  # Read host config file into environment variables
+  File.readline "#{Dir.pwd}/config/host" do |line|
+    key, value = line.split '='
+    ENV[key] = value
+  end
+
+
+  # Read config file of node type specified by user
+  File.readline "#{Dir.pwd}/config/#{node_type}" do |line|
+    key, value = line.split '='
+    ENV[key] = value
+  end
+
+
   # Start loop of quantity of nodes
   for nodeNum in 1..quantity
     ## Build node
