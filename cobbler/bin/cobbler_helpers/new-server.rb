@@ -56,3 +56,51 @@ ip_quad_4_range_low = ARGV[6]
 ip_quad_4_range_high = ARGV[7]
 
 
+
+
+
+validation_error =false
+
+# Input validation
+if node_type == nil
+  puts 'A node type (config file name) has not been supplied.'
+  validation_error = true
+end
+
+if quantity == nil || quantity == 0
+  puts 'A node quantity has not been supplied.'
+  validation_error = true
+end
+
+if quantity < 1
+  puts 'The quantity of  nodes supplied is too low ( < 1 ).'
+  validation_error = true
+end
+
+if (ip_quad_3_range_low < 0) || (ip_quad_3_range_high > 255)
+  puts 'The IP range for quad 3 is out of range. The lowest cannot be any lower than 0 and the highest cannot be any higher than 255.'
+  validation_error = true
+end
+
+if ip_quad_3_range_low > ip_quad_3_range_high
+  puts 'The lowest range for IP quad 3 cannot be higher than the highest range for IP quad 3.'
+  validation_error = true
+end
+
+if (ip_quad_4_range_low < 0) || (ip_quad_4_range_high > 255)
+  puts 'The IP range for quad 4 is out of range. The lowest cannot be any lower than 0 and the highest cannot be any higher than 255.'
+  validation_error = true
+end
+
+if ip_quad_4_range_low > ip_quad_4_range_high
+  puts 'The lowest range for IP quad 4 cannot be higher than the highest range for IP quad 3.'
+  validation_error = true
+end
+
+if ((ip_quad_3_range_high - ip_quad_3_range_low) * (ip_quad_4_range_high - ip_quad_4_range_low)) < quantity
+  puts 'The IP ranges supplied do not provide enough IP addresses for the quantity of nodes desired. Please select a larger range or request fewer nodes.'
+  validation_error = true
+end
+
+
+
