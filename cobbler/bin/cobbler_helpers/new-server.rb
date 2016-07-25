@@ -104,3 +104,31 @@ end
 
 
 
+# Proceed to preparation and building of nodes
+if !validation_error
+
+  # Start loop of quantity of nodes
+  for nodeNum in 1..quantity
+    ## Build node
+
+  ## Output build progress of node
+
+  end
+else
+
+end
+
+
+
+
+
+# End loop
+
+
+
+
+
+
+
+
+
