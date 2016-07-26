@@ -108,20 +108,20 @@ end
 if !validation_error
 
   # Read site config file into environment variables
-  File.readline "#{Dir.pwd}/config/site" do |line|
+  File.readlines "#{Dir.pwd}/config/site" do |line|
     key, value = line.split '='
     ENV[key] = value
   end
 
   # Read host config file into environment variables
-  File.readline "#{Dir.pwd}/config/host" do |line|
+  File.readlines "#{Dir.pwd}/config/host" do |line|
     key, value = line.split '='
     ENV[key] = value
   end
 
 
   # Read config file of node type specified by user
-  File.readline "#{Dir.pwd}/config/#{node_type}" do |line|
+  File.readlines "#{Dir.pwd}/config/#{node_type}" do |line|
     key, value = line.split '='
     ENV[key] = value
   end
