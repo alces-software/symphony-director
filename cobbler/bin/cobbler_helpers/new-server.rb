@@ -136,7 +136,19 @@ if !validation_error
 
     `cobbler system edit --name #{base_name}#{nodeNum} --hostname #{base_name}#{nodeNum}.#{ENV[PRVDOMAIN]} --profile #{ENV[PROFILE]} --name-servers-search "#{ENV[SEARCHDOMAIN]}" --name-servers=10.78.254.1 --gateway=#{ENV[GW]}`
 
-  ## Output build progress of node
+
+    ## Create Bonds
+
+    ## Create Bridges
+
+    ## Configure networks
+
+    ## Configure disks
+
+    ##
+
+
+    ## Output build progress of node
 
   end
 else
