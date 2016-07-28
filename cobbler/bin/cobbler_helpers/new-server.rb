@@ -107,6 +107,8 @@ end
 # Proceed to preparation and building of nodes
 if !validation_error
 
+  puts 'Main application!'
+
   # Read site config file into environment variables
   File.readlines "#{Dir.pwd}/config/site" do |line|
     key, value = line.split '='
