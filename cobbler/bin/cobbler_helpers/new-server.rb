@@ -50,10 +50,10 @@ puts '                                                        '
 node_type = ARGV[0]
 quantity = ARGV[1]
 base_name = ARGV[2]
-ip_quad_3_range_low = ARGV[4]
-ip_quad_3_range_high = ARGV[5]
-ip_quad_4_range_low = ARGV[6]
-ip_quad_4_range_high = ARGV[7]
+ip_quad_3_range_low = ARGV[3]
+ip_quad_3_range_high = ARGV[4]
+ip_quad_4_range_low = ARGV[5]
+ip_quad_4_range_high = ARGV[6]
 
 
 
