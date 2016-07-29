@@ -59,7 +59,7 @@ ip_quad_4_range_high = ARGV[6]
 
 
 
-validation_error =false
+validation_error = false
 
 # Input validation
 if node_type.to_s == nil
