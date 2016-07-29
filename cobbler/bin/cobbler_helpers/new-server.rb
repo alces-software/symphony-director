@@ -131,8 +131,15 @@ if !validation_error
     #ENV[key] = value
   end
 
+=begin
+
 
   # Start loop of quantity of nodes
+
+  quantity.times do |i|
+
+  end
+
   for node_num in 1..quantity
     ## Build node
 
@@ -156,7 +163,10 @@ if !validation_error
     ## Output build progress of node
 
     `cobbler system report --name #{base_name}#{node_num}`
+
   end
+
+=end
 else
 
 end
