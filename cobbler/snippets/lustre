@@ -1,8 +1,10 @@
 if ! [ -z "$lustre" ]; then
   TYPE=$lustre
   if [ "$TYPE" == "client" ]; then 
+    #have a pop at installing the kernel in the install env
+    yum -e 0 -y --config http://repo/configs/$tree/yum.conf --enablerepo intellustre-extra install kernel kernel-devel
     cat << EOF > /var/lib/symphony/firstrun/scripts/lustre.bash
-yum -y install lustre-client lustre-client-modules kernel
+yum -y install lustre-client lustre-client-modules kernel kernel-devel
 #toggle reboot flag
 touch /firstrun.reboot
 #if $varExists('lustremounts')

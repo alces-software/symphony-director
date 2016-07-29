@@ -1,0 +1,91 @@
+if ! [ -z "$flightcluster" ] ; then
+cat << 'EOD' > /var/lib/symphony/firstrun/scripts/installflight.bash
+export cw_BUILD_noninteractive=true
+export cw_DIST=el7
+export cw_BUILD_release="2016.3pre1"
+export cw_BUILD_source_branch=1.6.0-preview1
+export cw_BUILD_dist_url=http://repo/clusterware/dist
+curl -sL http://git.io/clusterware-installer | /bin/bash
+
+cat <<EOF > /opt/clusterware/etc/sync.rc
+################################################################################
+##
+## Alces Clusterware - Shell configuration
+## Copyright (c) 2016 Alces Software Ltd
+##
+################################################################################
+#cw_SYNC_aws_access_key_id=""
+#cw_SYNC_aws_secret_access_key=""
+cw_SYNC_default=false
+EOF
+
+cat <<EOF > /opt/clusterware/etc/gridware.rc
+################################################################################
+##
+## Alces Clusterware - Shell configuration
+## Copyright (c) 2016 Alces Software Ltd
+##
+################################################################################
+cw_GRIDWARE_root=/opt/gridware
+cw_GRIDWARE_default_depot=local
+#cw_GRIDWARE_boot_update_package_repos=main
+#cw_GRIDWARE_boot_update_depot_repos=official
+cw_GRIDWARE_prefer_binary=false
+cw_GRIDWARE_var=/var
+#cw_GRIDWARE_init_depots=site
+EOF
+
+source /etc/profile.d/alces-clusterware.sh
+alces handler enable clusterable
+alces handler enable cluster-sge
+alces handler enable cluster-gridware
+
+cat <<EOF > /opt/clusterware/etc/cluster-sge.rc
+################################################################################
+##
+## Alces Clusterware - Shell configuration
+## Copyright (c) 2015-2016 Alces Software Ltd
+##
+################################################################################
+cw_CLUSTER_SGE_log=/var/log/clusterware/cluster-sge.log
+cw_CLUSTER_SGE_max_rt_seconds=259200
+cw_CLUSTER_SGE_min_vmem_gb=4
+# Set to "true" or "false"
+cw_CLUSTER_SGE_cleanup_on_leave=false
+# Set to "true" or "false"
+cw_CLUSTER_SGE_reconfigure_on_join=false
+# Set to "full", "allhosts" or "skip"
+cw_CLUSTER_SGE_hostgroup_strategy=full
+EOF
+
+cat <<EOF > /opt/clusterware/etc/clusterable.rc
+################################################################################
+##
+## Alces Clusterware - Shell configuration
+## Copyright (c) 2016 Alces Software Ltd
+##
+################################################################################
+cw_CLUSTERABLE_manage_etc_hosts=false
+cw_CLUSTERABLE_manage_genders=true
+cw_CLUSTERABLE_manage_ssh_host_keys=false
+cw_CLUSTERABLE_manage_ssh_config=false
+cw_CLUSTERABLE_cleanup_on_leave=false
+EOF
+
+intf=\$(ip -o route get 172.30.64.5 | head -n1 | sed 's/.*dev \(\S*\).*/\1/g')
+
+cat <<EOF > /opt/clusterware/etc/config.yml
+cluster:
+  uuid: 'db0c2af9-9c3e-4502-9212-8c37e0134235'
+  token: 'u73yr61UdfwGaROE8uFX'
+  name: 'sharc'
+  role: 'slave'
+  interface: $intf
+  tags:
+    scheduler_roles: ':compute:'
+EOF
+chmod 0600 /opt/clusterware/etc/config.yml
+
+systemctl start clusterware-configurator
+EOD
+fi
