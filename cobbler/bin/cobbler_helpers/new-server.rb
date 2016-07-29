@@ -130,13 +130,13 @@ if !validation_error
 
 
   # Start loop of quantity of nodes
-  for nodeNum in 1..quantity
+  for node_num in 1..quantity
     ## Build node
 
-    `cobbler system add --name #{base_name}#{nodeNum} --hostname #{base_name}#{nodeNum}.#{ENV[PRVDOMAIN]} --profile #{ENV[PROFILE]} --name-servers-search "#{ENV[SEARCHDOMAIN]}" --name-servers=10.78.254.1 --gateway=#{ENV[GW]}`
+    `cobbler system add --name #{base_name}#{node_num} --hostname #{base_name}#{node_num}.#{ENV[PRVDOMAIN]} --profile #{ENV[PROFILE]} --name-servers-search "#{ENV[SEARCHDOMAIN]}" --name-servers=10.78.254.1 --gateway=#{ENV[GW]}`
 
 
-    `cobbler system edit --name #{base_name}#{nodeNum} --hostname #{base_name}#{nodeNum}.#{ENV[PRVDOMAIN]} --profile #{ENV[PROFILE]} --name-servers-search "#{ENV[SEARCHDOMAIN]}" --name-servers=10.78.254.1 --gateway=#{ENV[GW]}`
+    `cobbler system edit --name #{base_name}#{node_num} --hostname #{base_name}#{node_num}.#{ENV[PRVDOMAIN]} --profile #{ENV[PROFILE]} --name-servers-search "#{ENV[SEARCHDOMAIN]}" --name-servers=10.78.254.1 --gateway=#{ENV[GW]}`
 
 
     ## Create Bonds
@@ -152,6 +152,7 @@ if !validation_error
 
     ## Output build progress of node
 
+    `cobbler system report --name #{base_name}#{node_num}`
   end
 else
 
