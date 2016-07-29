@@ -110,22 +110,25 @@ if !validation_error
   puts 'Main application!'
 
   # Read site config file into environment variables
-  File.readlines "#{Dir.pwd}/config/site" do |line|
-    key, value = line.split '='
-    ENV[key] = value
+  File.readlines("#{Dir.pwd}/config/site").each do |line|
+    puts line
+    #key, value = line.split '='
+    #ENV[key] = value
   end
 
   # Read host config file into environment variables
-  File.readlines "#{Dir.pwd}/config/host" do |line|
-    key, value = line.split '='
-    ENV[key] = value
+  File.readlines("#{Dir.pwd}/config/host").each do |line|
+    puts line
+    #key, value = line.split '='
+    #ENV[key] = value
   end
 
 
   # Read config file of node type specified by user
-  File.readlines "#{Dir.pwd}/config/#{node_type}" do |line|
-    key, value = line.split '='
-    ENV[key] = value
+  File.readlines("#{Dir.pwd}/config/#{node_type}").each do |line|
+    puts line
+    #key, value = line.split '='
+    #ENV[key] = value
   end
 
 
