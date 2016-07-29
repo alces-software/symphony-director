@@ -1,0 +1,44 @@
+#IPMI / BMC Info
+IPMIUSER: admin
+IPMIPASSWORD: &ipmiPassword PassW0rd
+
+#Network / Domain info
+DOMAIN: &domain mycluster.compute.estate
+
+#PRIVATE NETWORK
+PRVDOMAIN: &prvDomain prv.*domain
+PRVNETMASK: 255.255.0.0
+PRV_ROUTES:
+
+#MGT NETWORK
+MGTDOMAIN: &mgtDomain mgt.*domain
+MGTNETMASK: 255.255.0.0
+GWMGT: 10.111.254.1
+
+#BUILDNETWORK
+BUILDDOMAIN: &buildDomain bld.*domain
+BUILDNETMASK: 255.255.0.0
+GWBUILD: &gwBuild 10.78.254.1
+
+#IB NETWORK
+IBDOMAIN: &ibDomain ib.*domain
+IBNETMASK: 255.255.0.0
+
+#DMZ NETWORK
+DMZDOMAIN: dmz.*domain
+DMZNETMASK: 255.255.0.0
+
+#IPA DETAILS
+#leave blank if no IPA
+IDMIP: 10.110.254.2
+REALM: MYCLUSTER.COMPUTE.ESTATE
+IDM: directory.*buildDomain
+IPAPASSWORD: *ipmiPassword
+
+GW: *gwBuild
+SEARCHDOMAIN:
+  - *prvDomain
+  - *ibDomain
+  - *mgtDomain
+  - *domain
+  - *buildDomain
