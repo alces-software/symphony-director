@@ -173,7 +173,7 @@ if !validation_error
 
 =end
 else
-
+  puts "Validation has not passed successfully. Please address the stated issues before trying again. Thank you."
 end
 
 
