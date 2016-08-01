@@ -98,7 +98,7 @@ if ip_quad_4_range_low.to_i > ip_quad_4_range_high.to_i
   validation_error = true
 end
 
-if ((ip_quad_3_range_high.to_i - ip_quad_3_range_low.to_i) * (ip_quad_4_range_high.to_i - ip_quad_4_range_low.to_i)) < quantity.to_i
+if ((((ip_quad_3_range_high.to_i - ip_quad_3_range_low.to_i) + 1) / 2) * ((ip_quad_4_range_high.to_i - ip_quad_4_range_low.to_i) + 1)) < quantity.to_i
   puts 'The IP ranges supplied do not provide enough IP addresses for the quantity of nodes desired. Please select a larger range or request fewer nodes.'
   validation_error = true
 end
