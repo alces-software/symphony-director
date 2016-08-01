@@ -120,7 +120,7 @@ if !validation_error
     config[key] = value
   }
 
-  # Updating configuration with selected template configuration
+  # Updating configuration with user selected template configuration
   YAML.load_file("#{Dir.pwd}/config/#{template_name}.yml").each {
       |key, value|
 
