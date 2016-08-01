@@ -2,6 +2,7 @@
 
 # Listing required resources
 # require 'open3'
+require 'yaml'
 
 =begin
 
@@ -47,13 +48,13 @@ puts '                                                        '
 # - IP quad 3 range
 # - IP quad 4 range
 
-node_type = ARGV[0]
-quantity = ARGV[1]
-base_name = ARGV[2]
-ip_quad_3_range_low = ARGV[3]
-ip_quad_3_range_high = ARGV[4]
-ip_quad_4_range_low = ARGV[5]
-ip_quad_4_range_high = ARGV[6]
+template_name = ARGV[0].to_s
+quantity = ARGV[1].to_i
+base_name = ARGV[2].to_s
+ip_quad_3_range_low = ARGV[3].to_i
+ip_quad_3_range_high = ARGV[4].to_i
+ip_quad_4_range_low = ARGV[5].to_i
+ip_quad_4_range_high = ARGV[6].to_i
 
 
 
@@ -109,26 +110,27 @@ if !validation_error
 
   puts 'Main application!'
 
-  # Read site config file into environment variables
-  File.readlines("#{Dir.pwd}/config/site").each do |line|
-    puts line
-    #key, value = line.split '='
-    #ENV[key] = value
-  end
+  # Loading site configuration from YAML file
+  config = YAML.load_file("#{Dir.pwd}/config/site.yml")
 
-  # Read host config file into environment variables
-  File.readlines("#{Dir.pwd}/config/host").each do |line|
-    puts line
-    #key, value = line.split '='
-    #ENV[key] = value
-  end
+  # Updating configuration with host config values
+  YAML.load_file("#{Dir.pwd}/config/host.yml").each {
+      |key, value|
 
+    config[key] = value
+  }
 
-  # Read config file of node type specified by user
-  File.readlines("#{Dir.pwd}/config/#{node_type}").each do |line|
-    puts line
-    #key, value = line.split '='
-    #ENV[key] = value
+  # Updating configuration with selected template configuration
+  YAML.load_file("#{Dir.pwd}/config/#{template_name}.yml").each {
+      |key, value|
+
+    config[key] = value
+  }
+
+  # Outputting current built configuration for debug purposes
+  config.each do |k, v|
+    puts
+    puts "#{k}: #{v}"
   end
 
 =begin
