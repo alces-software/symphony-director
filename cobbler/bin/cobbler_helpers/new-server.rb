@@ -138,6 +138,7 @@ if !validation_error
   quantity.times do |i|
     puts i
 
+    #`cobbler system add --name #{base_name}#{i} --hostname #{base_name}#{i}.#{config["PRVDOMAIN"]} --profile #{config["PROFILE"]} --name-servers-search "#{config["SEARCHDOMAIN"]}" --name-servers=10.78.254.1 --gateway=#{config["GW"]}`
 
   end
 
