@@ -144,11 +144,10 @@ if !validation_error
 
 
   config.each do |k, v|
-    puts
     puts "#{k}: #{v}"
   end
 
-  
+
   # Start loop of quantity of nodes
   quantity.times do |i|
     puts i
@@ -157,7 +156,6 @@ if !validation_error
     #`cobbler system add --name #{base_name}#{i} --hostname #{base_name}#{i}.#{config["PRVDOMAIN"].to_s} --profile #{config["PROFILE"].to_s} --name-servers-search "#{config["SEARCHDOMAIN"].to_s}" --name-servers=10.78.254.1 --gateway=#{config["GW"].to_s}`
 
   end
-
 
 =begin
 
