@@ -133,14 +133,16 @@ if !validation_error
     puts "#{k}: #{v}"
   end
 
-=begin
-
-
+  
   # Start loop of quantity of nodes
-
   quantity.times do |i|
+    puts i
+
 
   end
+
+
+=begin
 
   for node_num in 1..quantity
     ## Build node
