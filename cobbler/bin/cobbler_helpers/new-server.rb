@@ -63,7 +63,7 @@ ip_quad_4_range_high = ARGV[6].to_i
 validation_error = false
 
 # Input validation
-if node_type.to_s == nil
+if template_name.to_s == nil
   puts 'A node type (config file name) has not been supplied.'
   validation_error = true
 end
