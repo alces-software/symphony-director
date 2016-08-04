@@ -69,9 +69,10 @@ $SNIPPET('redhat_register')
 $SNIPPET('cobbler_register')
 $SNIPPET('symphony/enrollipa')
 $SNIPPET('symphony/sitescriptwrapper')
+$SNIPPET('symphony/flightinstall')
+$SNIPPET('symphony/nvidia')
 $SNIPPET('symphony/alceshpc')
 $SNIPPET('symphony/clusterware.el7')
-$SNIPPET('symphony/lustre')
 $SNIPPET('symphony/installnova')
 $SNIPPET('symphony/profile')
 # Enable post-install boot notification
@@ -80,6 +81,8 @@ $SNIPPET('post_anamon')
 $SNIPPET('kickstart_done')
 # End final steps
 $SNIPPET('symphony/runpuppet')
+# do this pretty late for a better bash at lustre kernel install
+$SNIPPET('symphony/lustre')
 #Do this late as possible it might mess with resolv.conf
 $SNIPPET('post_install_network_config')
 $SNIPPET('symphony/finalnetworkconfig')

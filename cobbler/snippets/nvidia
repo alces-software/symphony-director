@@ -1,0 +1,8 @@
+if ! [ -z "$nvidia" ]; then
+  url=$nvidia
+  mkdir -p /var/lib/symphony/nvidia
+  curl $nvidia > /var/lib/symphony/nvidia/installer.bin
+  cat << 'EOF' > /var/lib/symphony/firstrun/scripts/nvidia.bash
+sh /var/lib/symphony/nvidia/installer.bin --kernel-name=`uname -r` --no-network --silent --disable-nouveau --log-file-name=/root/symphony-nvidia-install.log
+EOF
+fi
