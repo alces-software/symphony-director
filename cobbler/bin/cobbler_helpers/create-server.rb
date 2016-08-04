@@ -153,4 +153,11 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
     print `cobbler system edit --name #{server_name} --in-place --ksmeta="ipa_domain=#{config["DOMAIN"]} ipa_realm=#{config["REALM"]} ipa_server=#{config["IDM"]} ipa_password=#{config["IPAPASSWORD"]}`
   end
 
+
+  if config["HOSTTYPE"] == "hw"
+    print `cobbler system edit --name #{server_name} --power-type=ipmilan --power-address=#{config["IPBMC"]} --power-user="#{config["IPMIUSER"]}" --power-pass="#{config["IPMIPASSWORD"]}"`
+    print `cobbler system edit --name #{server_name} --interface bmc --dns-name=#{server_name}.bmc.#{config["MGTDOMAIN"]} --ip-address=#{config["IPBMC"]}`
+    print `cobbler system edit --name #{server_name} --in-place --ksmeta "ipmiset=true ipminetmask='#{config["MGTNETMASK"]}' ipmigateway='#{config["GWMGT"]}' ipmilanchannel=1 ipmiuserid=2"`
+  end
+
 end
