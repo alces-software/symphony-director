@@ -101,4 +101,13 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
     end
   end
 
+
+  print `cobbler system edit --name #{server_name} --interface #{config["BUILD_INT"]} --dns-name=#{server_name}.#{config["BUILDDOMAIN"]} --ip-address=#{config["IPBUILD"]} --netmask=#{config["BUILDNETMASK"]} --static=true`
+
+
+  # Setting MAC address
+  if ! build_mac == nil
+    print `cobbler system edit --name #{server_name} --interface #{config["BUILD_INT"]} --mac="#{build_mac}"`
+  end
+
 end
