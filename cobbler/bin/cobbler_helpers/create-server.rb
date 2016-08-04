@@ -141,4 +141,10 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
     print `cobbler system edit --name #{server_name} --in-place --ksmeta="serial='ttyS1,115200n8'"`
   end
 
+
+  # Setting Disk 2 if one has been specified
+  if ! config["DISK2"] == nil
+    print `cobbler system edit --in-place --name #{server_name} --ksmeta="disk2=#{config["DISK2"]}"`
+  end
+
 end
