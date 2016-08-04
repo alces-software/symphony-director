@@ -130,4 +130,7 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
     print `cobbler system edit --name #{server_name} --interface #{config["DMZ_INT"]} --dns-name=#{server_name}.#{config["DMZDOMAIN"]} --ip-address=#{config["IPDMZ"]} --netmask=#{config["DMZNETMASK"]} --static=true`
   end
 
+  # Setting machine disk
+  print `cobbler system edit --name #{server_name} --netboot=1 --in-place --ksmeta="disklayout='#{config["DISKLAYOUT"]}' disk1='#{config["DISK"]}'"`
+
 end
