@@ -53,4 +53,10 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
   config["IPIB"].sub! "--IPQUAD4--", q4ip.to_s
 
 
+
+  # Adding server to cobbler
+  print `cobbler system add --name #{server_name} --hostname #{server_name}.#{config["PRVDOMAIN"]} --profile #{config["PROFILE"]} --name-servers-search #{config["SEARCHDOMAIN"]} --name-servers=10.78.254.1 --gateway=#{config["GW"]}`
+
+  print `cobbler system edit --name #{server_name} --hostname #{server_name}.#{config["PRVDOMAIN"]} --profile #{config["PROFILE"]} --name-servers-search #{config["SEARCHDOMAIN"]} --name-servers=10.78.254.1 --gateway=#{config["GW"]}`
+
 end
