@@ -78,4 +78,27 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
     end
   end
 
+
+  # Creating bridges
+  if ! config["BRIDGES"] == nil
+
+    config["BRIDGES"].each do |bridge|
+      options = "#{bridge}OPTIONS"
+
+      if config[options] == nil
+        config[options] = "stp=no"
+      end
+
+      print `cobbler system edit --name #{server_name} --interface=#{bridge} --interface-type=bridge --bonding-opts="#{config[options]}"`
+
+      slaves = "#{bond}SLAVES"
+
+      config[slaves].each {
+          |slave|
+
+        print `cobbler system edit --name #{server_name} --interface #{slave} --interface-type=bridge_slave --interface-master=#{bridge}`
+      }
+    end
+  end
+
 end
