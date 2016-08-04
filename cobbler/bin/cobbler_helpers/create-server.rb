@@ -1,0 +1,21 @@
+#!/usr/bin/ruby
+
+# Creates a new server on cobbler
+
+def build_config(*config_files)
+  config = Hash.new
+
+  config_files.each do |config_file|
+    YAML.load_file("#{Dir.pwd}/config/#{config_file}.yml").each {
+        |key, value|
+
+      config[key] = value
+    }
+  end
+
+  return config
+end
+
+def build_server(config, server_name, q3ip, q4ip, build_mac)
+
+end
