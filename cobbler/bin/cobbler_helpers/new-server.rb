@@ -78,7 +78,7 @@ if quantity.to_i < 1
   validation_error = true
 end
 
-if (ip_quad_3_range_low.to_i < 0) || (ip_quad_3_range_high.to_i > 255)
+if (ip_quad_3_range_low.to_i < 0) || (ip_quad_3_range_high.to_i > 254)
   puts 'The IP range for quad 3 is out of range. The lowest cannot be any lower than 0 and the highest cannot be any higher than 255.'
   validation_error = true
 end
