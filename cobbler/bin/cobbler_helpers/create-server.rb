@@ -167,6 +167,18 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
   end
 
 end
+
+# Gets a set MAC address supplied via the config and returns for the corresponding server
+def set_mac_address(server_id, mac_list)
+  mac_list.each do |mac_record|
+    if mac_record[0] == server_id
+      return mac_record[1]
+    end
+  end
+
+  return nil
+end
+
 # Builds a set of servers in a supplied quantity
 def build_server_set(template, set_name, quantity, quad_3_ip_range, quad_4_ip_range, build_macs)
 
