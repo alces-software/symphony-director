@@ -35,6 +35,7 @@ def build_config(*config_files)
   return config
 end
 
+# Building individual server as part of set
 def build_server(config, server_name, q3ip, q4ip, build_mac)
 
 end
