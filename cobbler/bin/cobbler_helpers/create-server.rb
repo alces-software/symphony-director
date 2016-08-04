@@ -59,4 +59,23 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
 
   print `cobbler system edit --name #{server_name} --hostname #{server_name}.#{config["PRVDOMAIN"]} --profile #{config["PROFILE"]} --name-servers-search #{config["SEARCHDOMAIN"]} --name-servers=10.78.254.1 --gateway=#{config["GW"]}`
 
+
+  # Creating bonds
+  if ! config["BONDS"] == nil
+
+    config["BONDS"].each do |bond|
+      options = "#{bond}OPTIONS"
+
+      print `cobbler system edit --name #{server_name} --interface=#{bond} --interface-type=bond --bonding-opts="#{config[options]}"`
+
+      slaves = "#{bond}SLAVES"
+
+      config[slaves].each {
+        |slave|
+
+        print `cobbler system edit --name #{server_name} --interface #{slave} --interface-type=bond_slave --interface-master=#{bond}`
+      }
+    end
+  end
+
 end
