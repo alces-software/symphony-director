@@ -3,9 +3,13 @@
 # Creates a new server on cobbler
 
 require 'yaml'
+
+
+# Building configuration for server to generate
 def build_config(*config_files)
   config = Hash.new
 
+  # Opening configurations and adding parts to general configuration variable
   config_files.each do |config_file|
     YAML.load_file("#{Dir.pwd}/config/#{config_file}.yml").each {
         |key, value|
