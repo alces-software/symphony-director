@@ -110,4 +110,24 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
     print `cobbler system edit --name #{server_name} --interface #{config["BUILD_INT"]} --mac="#{build_mac}"`
   end
 
+
+  # Building private interface
+  if ! config["PRV_INT"] == nil
+    print `cobbler system edit --name #{server_name} --interface #{config["PRV_INT"]} --dns-name=#{server_name}.#{config["PRVDOMAIN"]} --ip-address=#{config["IPPRV"]} --netmask=#{config["PRVNETMASK"]} --static=true`
+    if ! config["PRV_ROUTES"] == nil
+      print `cobbler system edit --name #{server_name} --interface #{config["PRV_INT"]} --static-routes="#{config["PRV_ROUTES"]}"`
+    end
+  end
+
+
+  # Building Management interface
+  if ! config["MGT_INT"] == nil
+    print `cobbler system edit --name #{server_name} --interface #{config["MGT_INT"]} --dns-name=#{server_name}.#{config["MGTDOMAIN"]} --ip-address=#{config["IPMGT"]} --netmask=#{config["MGTNETMASK"]} --static=true`
+  end
+
+  # Building DMZ interface
+  if ! config["DMZ_INT"] == nil
+    print `cobbler system edit --name #{server_name} --interface #{config["DMZ_INT"]} --dns-name=#{server_name}.#{config["DMZDOMAIN"]} --ip-address=#{config["IPDMZ"]} --netmask=#{config["DMZNETMASK"]} --static=true`
+  end
+
 end
