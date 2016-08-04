@@ -147,4 +147,10 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
     print `cobbler system edit --in-place --name #{server_name} --ksmeta="disk2=#{config["DISK2"]}"`
   end
 
+
+  if ! config["IDMIP"] == nil
+    print `cobbler system edit --name #{server_name} --name-servers=#{config["IDMIP"]}`
+    print `cobbler system edit --name #{server_name} --in-place --ksmeta="ipa_domain=#{config["DOMAIN"]} ipa_realm=#{config["REALM"]} ipa_server=#{config["IDM"]} ipa_password=#{config["IPAPASSWORD"]}`
+  end
+
 end
