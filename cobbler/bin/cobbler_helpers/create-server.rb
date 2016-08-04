@@ -133,4 +133,12 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
   # Setting machine disk
   print `cobbler system edit --name #{server_name} --netboot=1 --in-place --ksmeta="disklayout='#{config["DISKLAYOUT"]}' disk1='#{config["DISK"]}'"`
 
+
+  # Setting machine serial
+  if config["MACHINETYPE"] == "vm"
+    print `cobbler system edit --name #{server_name} --in-place --ksmeta="serial='ttyS0,115200n8'"`
+  else
+    print `cobbler system edit --name #{server_name} --in-place --ksmeta="serial='ttyS1,115200n8'"`
+  end
+
 end
