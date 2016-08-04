@@ -2,6 +2,7 @@
 
 # Creates a new server on cobbler
 
+require 'yaml'
 def build_config(*config_files)
   config = Hash.new
 
