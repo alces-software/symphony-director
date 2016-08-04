@@ -167,4 +167,18 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
   end
 
 end
+# Builds a set of servers in a supplied quantity
+def build_server_set(template, set_name, quantity, quad_3_ip_range, quad_4_ip_range, build_macs)
+
+  # Generating configuration for server
+  config = build_config(site, host, template)
+
+  quantity.times {
+    |i|
+
+    build_mac = set_mac_address(i, build_macs)
+
+    build_server(config, set_name + "-" + i.to_s, ip3, ip4, build_mac)
+  }
+
 end
