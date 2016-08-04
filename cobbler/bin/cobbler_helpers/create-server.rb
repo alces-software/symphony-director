@@ -160,4 +160,10 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
     print `cobbler system edit --name #{server_name} --in-place --ksmeta "ipmiset=true ipminetmask='#{config["MGTNETMASK"]}' ipmigateway='#{config["GWMGT"]}' ipmilanchannel=1 ipmiuserid=2"`
   end
 
+
+  # Setup of infiniband adapter is available
+  if ! config["IB_INT"] == nil
+    print `cobbler system edit --name #{server_name} --interface #{config["IB_INT"]} --dns-name=#{server_name}.#{config["IBDOMAIN"]} --ip-address=#{config["IPIB"]} --netmask=#{config["IBNETMASK"]} --static=true`
+  end
+
 end
