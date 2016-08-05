@@ -207,10 +207,13 @@ def build_server_set(template, set_name, quantity, quad_3_ip_range, quad_4_ip_ra
   quantity.times {
     |i|
 
+    # Setting MAC address for new server
     build_mac = set_mac_address(i, build_macs)
 
+    # Setting IP address for new server
     ip_quads = set_ip_quads(i, quad_3_ip_range, quad_4_ip_range)
 
+    # Building server
     build_server(config, set_name + "-" + i.to_s, ip_quads[0], ip_quads[1], build_mac)
   }
 
