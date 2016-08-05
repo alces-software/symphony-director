@@ -168,6 +168,7 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
 
 end
 
+
 # Gets a set MAC address supplied via the config and returns for the corresponding server
 def set_mac_address(server_id, mac_list)
   mac_list.each do |mac_record|
