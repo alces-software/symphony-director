@@ -179,7 +179,7 @@ def set_mac_address(server_id, mac_list)
     end
   end
 
-  return nil
+  return ""
 end
 
 
