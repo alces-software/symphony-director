@@ -180,6 +180,23 @@ def set_mac_address(server_id, mac_list)
   return nil
 end
 
+
+# Sets the quad 3 and quad 4 ip addresses based on previous ip address and available range
+def set_ip_quads(iteration, quad_3_ip_range, quad_4_ip_range)
+  quad_3_ip_range = quad_3_ip_range.split("..").map do |i| i.to_i end  #.map(&:to_i)
+
+
+  quad_4_ip_range = quad_4_ip_range.split("..").map(&:to_i)
+  quad_4_ip_quantity = (quad_4_ip_range[1] - quad_4_ip_range[0]) + 1
+
+
+  new_ip_quads[0] = quad_3_ip_range[0] + ((iteration / quad_4_ip_quantity) * 2)
+  new_ip_quads[1] = quad_4_ip_range[0] + (iteration % quad_4_ip_quantity)
+
+  return new_ip_quads
+end
+
+
 # Builds a set of servers in a supplied quantity
 def build_server_set(template, set_name, quantity, quad_3_ip_range, quad_4_ip_range, build_macs)
 
