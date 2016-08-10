@@ -18,20 +18,6 @@ def build_config(*config_files)
     }
   end
 
-  # Config corrections
-  config["PRVDOMAIN"] = "prv.#{config["DOMAIN"]}"
-  config["MGTDOMAIN"] = "mgt.#{config["DOMAIN"]}"
-  config["BUILDDOMAIN"] = "bld.#{config["DOMAIN"]}"
-  config["IBDOMAIN"] = "ib.#{config["DOMAIN"]}"
-  config["DMZDOMAIN"] = "dmz.#{config["DOMAIN"]}"
-
-  config["IDM"] = "directory.#{config["BUILDDOMAIN"]}"
-
-  config["SEARCHDOMAIN"][0] = config["PRVDOMAIN"]
-  config["SEARCHDOMAIN"][1] = config["IBDOMAIN"]
-  config["SEARCHDOMAIN"][2] = config["MGTDOMAIN"]
-  config["SEARCHDOMAIN"][4] = config["BUILDDOMAIN"]
-
   return config
 end
 
