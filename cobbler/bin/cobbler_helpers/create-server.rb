@@ -135,7 +135,7 @@ def build_server(config, server_name, q3ip, q4ip, build_mac)
 
 
   # Setting machine serial
-  if config["MACHINETYPE"] == "vm"
+  if config["HOSTTYPE"] == "vm"
     print `cobbler system edit --name #{server_name} --in-place --ksmeta="serial='ttyS0,115200n8'"`
   else
     print `cobbler system edit --name #{server_name} --in-place --ksmeta="serial='ttyS1,115200n8'"`
