@@ -1,38 +1,38 @@
 # Example YAML file showing a cluster generation
 
-login:
-  server_base_name: "login"
-  quantity: 2
-  template: "login"
-  quad3: "1..10"
-  quad4: "21..70"
-  build_macs:
-    - [0, "CC-55-0E-5F-71-A4"]
-    - [1, "52-D2-D9-AB-D6-A5"]
+# login
+-  server_base_name: "login"
+   quantity: 2
+   template: "login"
+   quad3: "1..10"
+   quad4: "21..70"
+   build_macs:
+     - [0, "CC-55-0E-5F-71-A4"]
+     - [1, "52-D2-D9-AB-D6-A5"]
 
-master:
-  server_base_name: "master"
-  quantity: 1
-  template: "master"
-  quad3: "11..12"
-  quad4: "0"
-  build_macs:
-    - [0, "01-D7-D9-EB-D6-A6"]
+# master
+-  server_base_name: "master"
+   quantity: 1
+   template: "master"
+   quad3: "11..12"
+   quad4: "0"
+   build_macs:
+     - [0, "01-D7-D9-EB-D6-A6"]
 
-secondary_master:
-  server_base_name: "secondary-master"
-  quantity: 5
-  twmplate: "master"
-  quad3: "11..12"
-  quad4: "1..10"
+# secondary_master
+-  server_base_name: "secondary-master"
+   quantity: 5
+   template: "master"
+   quad3: "11..12"
+   quad4: "1..10"
 
-network:
-  server_base_name: "network"
-  quantity: 10
-  template: "network"
-  quad3: "15..20"
-  quad4: "0..255"
-  build_macs:
-    - [1, "18-5D-BD-02-2E-DC"]
-    - [6, "FC-8D-FA-ED-E9-70"]
-    - [8, "5A-08-28-D4-12-E2"]
+# network
+-  server_base_name: "network"
+   quantity: 10
+   template: "network"
+   quad3: "15..20"
+   quad4: "0..255"
+   build_macs:
+     - [1, "18-5D-BD-02-2E-DC"]
+     - [6, "FC-8D-FA-ED-E9-70"]
+     - [8, "5A-08-28-D4-12-E2"]
