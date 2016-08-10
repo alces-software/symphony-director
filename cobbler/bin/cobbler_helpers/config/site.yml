@@ -6,33 +6,33 @@ IPMIPASSWORD: &ipmiPassword PassW0rd
 DOMAIN: &domain mycluster.compute.estate
 
 #PRIVATE NETWORK
-PRVDOMAIN: &prvDomain prv.*domain
+PRVDOMAIN: &prvDomain prv.mycluster.compute.estate
 PRVNETMASK: 255.255.0.0
 PRV_ROUTES:
 
 #MGT NETWORK
-MGTDOMAIN: &mgtDomain mgt.*domain
+MGTDOMAIN: &mgtDomain mgt.mycluster.compute.estate
 MGTNETMASK: 255.255.0.0
 GWMGT: 10.111.254.1
 
 #BUILDNETWORK
-BUILDDOMAIN: &buildDomain bld.*domain
+BUILDDOMAIN: &buildDomain bld.mycluster.compute.estate
 BUILDNETMASK: 255.255.0.0
 GWBUILD: &gwBuild 10.78.254.1
 
 #IB NETWORK
-IBDOMAIN: &ibDomain ib.*domain
+IBDOMAIN: &ibDomain ib.mycluster.compute.estate
 IBNETMASK: 255.255.0.0
 
 #DMZ NETWORK
-DMZDOMAIN: dmz.*domain
+DMZDOMAIN: dmz.mycluster.compute.estate
 DMZNETMASK: 255.255.0.0
 
 #IPA DETAILS
 #leave blank if no IPA
 IDMIP: 10.110.254.2
 REALM: MYCLUSTER.COMPUTE.ESTATE
-IDM: directory.*buildDomain
+IDM: directory.bld.mycluster.compute.estate
 IPAPASSWORD: *ipmiPassword
 
 GW: *gwBuild
