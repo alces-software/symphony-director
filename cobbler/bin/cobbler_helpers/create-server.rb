@@ -191,7 +191,7 @@ end
 def build_server_set(template, set_name, quantity, quad_3_ip_range, quad_4_ip_range, build_macs)
 
   # Generating configuration for server
-  config = build_config(site, host, template)
+  config = build_config("site", "host", template)
 
   quantity.times {
     |i|
