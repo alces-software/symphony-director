@@ -207,3 +207,12 @@ def build_server_set(template, set_name, quantity, quad_3_ip_range, quad_4_ip_ra
   }
 
 end
+
+
+# Builds the cluster as defined in the user supplied configuration
+def build_cluster(config)
+  config.each do |set|
+    build_server_set(set["template"].to_s, set["server_base_name"].to_s, set["quantity"].to_i, set["quad3"].to_s, set["quad4"].to_s, set["build_macs"].to_a)
+  end
+end
+
