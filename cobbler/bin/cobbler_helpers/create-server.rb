@@ -157,7 +157,7 @@ end
 
 # Gets a set MAC address supplied via the config and returns for the corresponding server
 def set_mac_address(server_id, mac_list)
-  if ! mac_list == nil
+  if ! mac_list[0] == nil
     mac_list.each do |mac_record|
       if mac_record[0] == server_id
         return mac_record[1]
