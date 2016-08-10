@@ -176,11 +176,12 @@ def set_ip_quads(iteration, quad_3_ip_range, quad_4_ip_range)
 
   # Finding the highest and lowest values for quad 4 of the ip address as well as the quantity available
   quad_4_ip_range = quad_4_ip_range.split("..").map(&:to_i)
-  quad_4_ip_quantity = (quad_4_ip_range[1] - quad_4_ip_range[0]) + 1
+  quad_4_ip_quantity = (quad_4_ip_range[1].to_i - quad_4_ip_range[0].to_i) + 1
 
   # Setting quads 3 and 4
-  new_ip_quads[0] = quad_3_ip_range[0] + ((iteration / quad_4_ip_quantity) * 2)
-  new_ip_quads[1] = quad_4_ip_range[0] + (iteration % quad_4_ip_quantity)
+  new_ip_quads = Array.new
+  (new_ip_quads || []) << quad_3_ip_range[0].to_i + ((iteration / quad_4_ip_quantity.to_i) * 2)
+  new_ip_quads << quad_4_ip_range[0].to_i + (iteration % quad_4_ip_quantity.to_i)
 
   return new_ip_quads
 end
