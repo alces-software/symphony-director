@@ -39,18 +39,18 @@ end
 def build_server(config, server_name, q3ip, q4ip, build_mac)
 
   # Setting quad 3 of IP address
-  config["IPBUILD"].sub! "--IPQUAD3--", q3ip.to_s
-  config["IPBMC"].sub! "--IPQUAD3--", q3ip.to_s
-  config["IPMGT"].sub! "--IPQUAD3P1--", (q3ip + 1).to_s
-  config["IPPRV"].sub! "--IPQUAD3--", q3ip.to_s
-  config["IPIB"].sub! "--IPQUAD3--", q3ip.to_s
+  config["IPBUILD"].sub! "%IPQUAD3%", q3ip.to_s
+  config["IPBMC"].sub! "%IPQUAD3%", q3ip.to_s
+  config["IPMGT"].sub! "%IPQUAD3P1%", (q3ip + 1).to_s
+  config["IPPRV"].sub! "%IPQUAD3%", q3ip.to_s
+  config["IPIB"].sub! "%IPQUAD3%", q3ip.to_s
 
   # Setting quad 4 of IP address
-  config["IPBUILD"].sub! "--IPQUAD4--", q4ip.to_s
-  config["IPBMC"].sub! "--IPQUAD4--", q4ip.to_s
-  config["IPMGT"].sub! "--IPQUAD4--", q4ip.to_s
-  config["IPPRV"].sub! "--IPQUAD4--", q4ip.to_s
-  config["IPIB"].sub! "--IPQUAD4--", q4ip.to_s
+  config["IPBUILD"].sub! "%IPQUAD4%", q4ip.to_s
+  config["IPBMC"].sub! "%IPQUAD4%", q4ip.to_s
+  config["IPMGT"].sub! "%IPQUAD4%", q4ip.to_s
+  config["IPPRV"].sub! "%IPQUAD4%", q4ip.to_s
+  config["IPIB"].sub! "%IPQUAD4%", q4ip.to_s
 
 
 
