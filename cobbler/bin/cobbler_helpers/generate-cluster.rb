@@ -119,7 +119,6 @@ class ServerSet
 		return ""
 	end
 	
-	
 	# Preparing servers to be build
 	def generate_server_list
 		@quantity.times {
