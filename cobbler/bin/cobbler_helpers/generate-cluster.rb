@@ -76,6 +76,12 @@ class ServerSet
 	# Public functions
 	public
 	
+	def build_set
+		@servers.each do |server|
+			server.build_server
+		end
+	end
+	
 	
 	# Private functions
 	private
