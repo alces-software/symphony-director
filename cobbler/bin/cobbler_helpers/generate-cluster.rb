@@ -118,10 +118,10 @@ class ServerSet
 			|i|
 
 			# Setting IP address for new server
-			ip_quads = set_ip_quads(i, quad_3_ip_range, quad_4_ip_range)
+			ip_quads = set_ip_quads(i, @q3range, @q4range)
 
 			# Building server
-			@servers << Server.new(@name + "-" + i.to_s, @template, ip_quads[0], ip_quads[1], set_mac_address(i, build_macs))
+			@servers << Server.new(@name + "-" + i.to_s, @template, ip_quads[0], ip_quads[1], set_mac_address(i, @mac_list))
 		}
 	end
 end
