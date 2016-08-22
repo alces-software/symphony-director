@@ -71,6 +71,8 @@ class ServerSet
 		@q4range = quad_4_ip_range.to_s
 		@mac_list = build_macs.to_s
 		@quantity = quantity.to_i
+		
+		generate_server_list
 	end
 	
 	# Public functions
