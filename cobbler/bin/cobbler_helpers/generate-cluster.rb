@@ -283,29 +283,6 @@ end
 
 
 
-
-# Builds a set of servers in a supplied quantity
-def build_server_set(template, set_name, quantity, quad_3_ip_range, quad_4_ip_range, build_macs)
-
-  # Generating configuration for server
-  config = build_config("site", "host", template)
-
-  quantity.times {
-    |i|
-
-    # Setting MAC address for new server
-    build_mac = set_mac_address(i, build_macs)
-
-    # Setting IP address for new server
-    ip_quads = set_ip_quads(i, quad_3_ip_range, quad_4_ip_range)
-
-    # Building server
-    build_server(config, set_name + "-" + i.to_s, ip_quads[0], ip_quads[1], build_mac)
-  }
-
-end
-
-
 # Builds the cluster as defined in the user supplied configuration
 def build_cluster(config)
   config.each do |set|
