@@ -5,8 +5,9 @@
 require 'yaml'
 require 'open3'
 require 'logger'
+require 'file'
 
-$logger = Logger.new File.new('status.log')
+$logger = Logger.new(File.new('status.log'))
 
 class Server
 	def initialize(name, template, ip3, ip4, mac)
