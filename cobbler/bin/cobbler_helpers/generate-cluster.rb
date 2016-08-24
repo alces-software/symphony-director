@@ -279,7 +279,7 @@ def build_cluster(config)
 	# Configuring server settings and generating a build list
 	config.each do |set|
 	
-		cluster << ServerSet.new(set["server_base_name"].to_s, set["template"].to_s, set["quad3"].to_s, set["quad4"].to_s, set["build_macs"].to_a, set["quantity"].to_i)
+		(cluster || []) << ServerSet.new(set["server_base_name"].to_s, set["template"].to_s, set["quad3"].to_s, set["quad4"].to_s, set["build_macs"].to_a, set["quantity"].to_i)
 		
 	end
 	
