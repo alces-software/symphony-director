@@ -139,7 +139,8 @@ class Server
 		if ! @config["IB_INT"] == nil
 			cobbler_command("cobbler system edit --name #{@name} --interface #{@config["IB_INT"]} --dns-name=#{@name}.#{@config["IBDOMAIN"]} --ip-address=#{@config["IPIB"]} --netmask=#{@config["IBNETMASK"]} --static=true")
 		end
-	  
+
+		puts "Built server " << @name
 	end
 	
 	
