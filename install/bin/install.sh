@@ -23,7 +23,7 @@ echo "STAGE=2" > /var/lib/symphony-stage
 echo "STAGE=3" > /var/lib/symphony-stage
 ;;
 3)
-echo "STAGE=4" > /var/run/symphony-stage
+echo "STAGE=4" > /var/lib/symphony-stage
 ;;
 esac
 
