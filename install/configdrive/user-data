@@ -18,6 +18,8 @@ write_files:
    owner: root:root
 bootcmd:
  - sed -e 's/eth0/eth4/g' /etc/sysconfig/network-scripts/ifcfg-eth0 > /etc/sysconfig/network-scripts/ifcfg-eth4
+ - mkswap /dev/vdb
+ - swapon /dev/vdb
 runcmd:
  - ifup eth4
  - ifconfig eth4 > /dev/console
