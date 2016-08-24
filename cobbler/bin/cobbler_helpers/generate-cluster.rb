@@ -282,6 +282,11 @@ def build_cluster(config)
 		cluster << ServerSet.new(set["server_base_name"].to_s, set["template"].to_s, set["quad3"].to_s, set["quad4"].to_s, set["build_macs"].to_a, set["quantity"].to_i)
 		
 	end
+	
+	# Building all servers as part of the cluster
+	cluster.each do |set|
+		set.build_set()
+	end
 end
 
 config = YAML.load_file("#{Dir.pwd}/example.yml")
