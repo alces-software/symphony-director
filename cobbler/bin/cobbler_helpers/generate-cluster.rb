@@ -207,6 +207,8 @@ class ServerSet
 		@mac_list = build_macs.to_s
 		@quantity = quantity.to_i
 		
+		@servers = Array.new
+		
 		generate_server_list
 	end
 	
@@ -222,7 +224,7 @@ class ServerSet
 	
 	# Private functions
 	private
-	@servers = Array.new
+	
 	
 	# Sets the quad 3 and quad 4 ip addresses based on previous ip address and available range
 	def set_ip_quads(iteration, quad_3_ip_range, quad_4_ip_range)
