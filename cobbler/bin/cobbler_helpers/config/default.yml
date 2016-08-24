@@ -1,0 +1,69 @@
+#IPMI / BMC Info
+IPMIUSER: admin
+IPMIPASSWORD: &ipmiPassword PassW0rd
+
+#Network / Domain info
+DOMAIN: &domain mycluster.compute.estate
+
+#PRIVATE NETWORK
+PRVDOMAIN: &prvDomain prv.mycluster.compute.estate
+PRVNETMASK: 255.255.0.0
+PRV_ROUTES:
+
+#MGT NETWORK
+MGTDOMAIN: &mgtDomain mgt.mycluster.compute.estate
+MGTNETMASK: 255.255.0.0
+GWMGT: 10.111.254.1
+
+#BUILDNETWORK
+BUILDDOMAIN: &buildDomain bld.mycluster.compute.estate
+BUILDNETMASK: 255.255.0.0
+GWBUILD: &gwBuild 10.78.254.1
+
+#IB NETWORK
+IBDOMAIN: &ibDomain ib.mycluster.compute.estate
+IBNETMASK: 255.255.0.0
+
+#DMZ NETWORK
+DMZDOMAIN: dmz.mycluster.compute.estate
+DMZNETMASK: 255.255.0.0
+
+#IPA DETAILS
+#leave blank if no IPA
+IDMIP: 10.110.254.2
+REALM: MYCLUSTER.COMPUTE.ESTATE
+IDM: directory.bld.mycluster.compute.estate
+IPAPASSWORD: *ipmiPassword
+
+GW: *gwBuild
+SEARCHDOMAIN:
+  - *prvDomain
+  - *ibDomain
+  - *mgtDomain
+  - *domain
+  - *buildDomain
+
+#vm or hw
+HOSTTYPE: hw
+PROFILE: CentOS7
+
+#IP ADDRESSES
+IPBUILD: 10.78.%IPQUAD3%.%IPQUAD4%
+IPBMC: 10.111.%IPQUAD3%.%IPQUAD4%
+IPMGT: 10.111.%IPQUAD3P1%.%IPQUAD4%
+IPPRV: 10.110.%IPQUAD3%.%IPQUAD4%
+IPIB: 10.112.%IPQUAD3%.%IPQUAD4%
+
+#Interface names (leave blank if no interface on relating network)
+PRV_INT: eth0
+IB_INT: 
+#required
+BUILD_INT: eth1
+MGT_INT: 
+
+#Disk info
+DISKLAYOUT: default
+#usually sda for a hw machines or vda for a vm
+DISK: sda
+#Leave blank if none (used for multidisk layouts)
+DISK2: 
