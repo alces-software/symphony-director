@@ -22,6 +22,124 @@ class Server
 	
 	def build_server
 	
+		# Adding server to cobbler
+		cobbler_command("cobbler system add --name #{@name} --hostname #{@name}.#{@config["PRVDOMAIN"]} --profile #{@config["PROFILE"]} --name-servers-search #{@config["SEARCHDOMAIN"]} --name-servers=10.78.254.1 --gateway=#{@config["GW"]}")
+
+		cobbler_command("cobbler system edit --name #{@name} --hostname #{@name}.#{@config["PRVDOMAIN"]} --profile #{@config["PROFILE"]} --name-servers-search #{@config["SEARCHDOMAIN"]} --name-servers=10.78.254.1 --gateway=#{@config["GW"]}")
+		
+		
+		# Creating bonds
+		if ! @config["BONDS"] == nil
+
+			@config["BONDS"].each do |bond|
+				options = "#{bond}OPTIONS"
+
+				cobbler_command("cobbler system edit --name #{@name} --interface=#{bond} --interface-type=bond --bonding-opts='#{@config[options]}'")
+
+				slaves = "#{bond}SLAVES"
+
+				@config[slaves].each {
+					|slave|
+
+					cobbler_command("cobbler system edit --name #{@name} --interface #{slave} --interface-type=bond_slave --interface-master=#{bond}")
+				}
+			end
+		end
+
+
+		# Creating bridges
+		if ! @config["BRIDGES"] == nil
+
+			@config["BRIDGES"].each do |bridge|
+				options = "#{bridge}OPTIONS"
+
+				if @config[options] == nil
+					@config[options] = "stp=no"
+				end
+
+				cobbler_command("cobbler system edit --name #{@name} --interface=#{bridge} --interface-type=bridge --bonding-opts='#{@config[options]}'")
+
+				slaves = "#{bond}SLAVES"
+
+				@config[slaves].each {
+					|slave|
+
+					cobbler_command("cobbler system edit --name #{server_name} --interface #{slave} --interface-type=bridge_slave --interface-master=#{bridge}")
+				}
+			end
+		end
+
+
+		cobbler_command("cobbler system edit --name #{@name} --interface #{@config["BUILD_INT"]} --dns-name=#{@name}.#{@config["BUILDDOMAIN"]} --ip-address=#{@config["IPBUILD"]} --netmask=#{@config["BUILDNETMASK"]} --static=true")
+
+
+		# Setting MAC address
+		if ! @mac == nil
+			cobbler_command("cobbler system edit --name #{@name} --interface #{@config["BUILD_INT"]} --mac='#{@mac}'")
+		end
+
+
+		# Building private interface
+		if ! @config["PRV_INT"] == nil
+			cobbler_command("cobbler system edit --name #{@name} --interface #{@config["PRV_INT"]} --dns-name=#{@name}.#{@config["PRVDOMAIN"]} --ip-address=#{@config["IPPRV"]} --netmask=#{@config["PRVNETMASK"]} --static=true")
+			if ! @config["PRV_ROUTES"] == nil
+				cobbler_command("cobbler system edit --name #{@name} --interface #{@config["PRV_INT"]} --static-routes='#{@config["PRV_ROUTES"]}'")
+			end
+		end
+
+
+		# Building Management interface
+		if ! @config["MGT_INT"] == nil
+			cobbler_command("cobbler system edit --name #{@name} --interface #{@config["MGT_INT"]} --dns-name=#{@name}.#{@config["MGTDOMAIN"]} --ip-address=#{@config["IPMGT"]} --netmask=#{@config["MGTNETMASK"]} --static=true")
+		end
+
+		# Building DMZ interface
+		if ! @config["DMZ_INT"] == nil
+			cobbler_command("cobbler system edit --name #{@name} --interface #{@config["DMZ_INT"]} --dns-name=#{@name}.#{@config["DMZDOMAIN"]} --ip-address=#{@config["IPDMZ"]} --netmask=#{@config["DMZNETMASK"]} --static=true")
+		end
+
+
+		# Setting machine disk
+		disk_layout = "'#{@config["DISKLAYOUT"]}'"
+		disk = "'#{@config["DISK"]}'"
+
+		cobbler_command('cobbler system edit --name #{@name} --netboot=1 --in-place --ksmeta="disklayout=disk_layout disk1=disk"')
+
+		# Setting machine serial
+		if @config["HOSTTYPE"] == "vm"
+			serial = "'ttyS0,115200n8'"
+		else
+			serial = "'ttyS1,115200n8'"
+		end
+
+		cobbler_command('cobbler system edit --name #{@name} --in-place --ksmeta="serial=#{serial}"')
+		
+
+
+		# Setting Disk 2 if one has been specified
+		if ! @config["DISK2"] == nil
+			cobbler_command("cobbler system edit --in-place --name #{@name} --ksmeta='disk2=#{@config["DISK2"]}'")
+		end
+
+
+		if ! @config["IDMIP"] == nil
+			cobbler_command("cobbler system edit --name #{@name} --name-servers=#{@config["IDMIP"]}")
+			cobbler_command("cobbler system edit --name #{@name} --in-place --ksmeta='ipa_domain=#{@config["DOMAIN"]} ipa_realm=#{@config["REALM"]} ipa_server=#{@config["IDM"]} ipa_password=#{@config["IPAPASSWORD"]}'")
+		end
+
+
+		if @config["HOSTTYPE"] == "hw"
+			cobbler_command("cobbler system edit --name #{@name} --power-type=ipmilan --power-address=#{@config["IPBMC"]} --power-user='#{@config["IPMIUSER"]}' --power-pass='#{@config["IPMIPASSWORD"]}'")
+			cobbler_command("cobbler system edit --name #{@name} --interface bmc --dns-name=#{@name}.bmc.#{@config["MGTDOMAIN"]} --ip-address=#{@config["IPBMC"]}")
+			cobbler_command("cobbler system edit --name #{@name} --in-place --ksmeta 'ipmiset=true ipminetmask=#{@config["MGTNETMASK"]} ipmigateway=#{@config["GWMGT"]} ipmilanchannel=1 ipmiuserid=2'")
+		end
+
+
+		# Setup of infiniband adapter is available
+		if ! @config["IB_INT"] == nil
+			cobbler_command("cobbler system edit --name #{@name} --interface #{@config["IB_INT"]} --dns-name=#{@name}.#{@config["IBDOMAIN"]} --ip-address=#{@config["IPIB"]} --netmask=#{@config["IBNETMASK"]} --static=true")
+		end
+	  
 	end
 	
 	
