@@ -5,7 +5,6 @@
 require 'yaml'
 require 'open3'
 require 'logger'
-require 'file'
 
 $logger = Logger.new(File.new('status.log'))
 
