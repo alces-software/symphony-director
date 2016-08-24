@@ -263,7 +263,7 @@ class ServerSet
 			ip_quads = set_ip_quads(i, @q3range, @q4range)
 
 			# Building server
-			@servers << Server.new(@name + "-" + i.to_s, @template, ip_quads[0], ip_quads[1], set_mac_address(i, @mac_list))
+			(@servers || []) << Server.new(@name + "-" + i.to_s, @template, ip_quads[0], ip_quads[1], set_mac_address(i, @mac_list))
 		}
 	end
 end
