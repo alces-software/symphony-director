@@ -3,6 +3,7 @@
 # Creates a cluster of new servers on cobbler
 
 require 'yaml'
+require 'open3'
 
 
 class Server
@@ -58,6 +59,11 @@ class Server
 		@config["IPPRV"].sub! "%IPQUAD4%", q4ip.to_s
 		@config["IPIB"].sub! "%IPQUAD4%", q4ip.to_s
 		
+	end
+	
+	def cobbler_command(command)
+		
+		stdout, stderr, status = Open3.capture3(command)
 	end
 end
 
