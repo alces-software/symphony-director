@@ -186,13 +186,22 @@ class Server
 		
 		stdout, stderr, status = Open3.capture3(command)
 	
-		$logger.info("")
-		$logger.info("Server:	  " + @name)
-		$logger.info("Command:	  " + command.to_s)
-		$logger.info("Stdout:	  " + stdout.to_s)
-		$logger.info("Stderr:	  " + stderr.to_s)
-		$logger.info("Exit code:   " + status.exitstatus.to_s)
-		$logger.info("")
+#		$logger.info("")
+#		$logger.info("Server:	  " + @name)
+#		$logger.info("Command:	  " + command.to_s)
+#		$logger.info("Stdout:	  " + stdout.to_s)
+#		$logger.info("Stderr:	  " + stderr.to_s)
+#		$logger.info("Exit code:   " + status.exitstatus.to_s)
+#		$logger.info("")
+		
+		
+		puts("")
+		puts("Server:	  " + @name)
+		puts("Command:	  " + command.to_s)
+		puts("Stdout:	  " + stdout.to_s)
+		puts("Stderr:	  " + stderr.to_s)
+		puts("Exit code:   " + status.exitstatus.to_s)
+		puts("")
 	end
 end
 
