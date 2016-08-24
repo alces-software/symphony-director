@@ -1,30 +1,34 @@
 #!/bin/bash
 
-if ! [ -f /var/run/symphony-stage ]; then
+if ! [ -f /var/lib/symphony-stage ]; then
  STAGE=1
 else
- . /var/run/symphony-stage
+ . /var/lib/symphony-stage
 fi
 
-APPLIANCE=symphony-director
+APPLIANCE=symphony-`hostname -s`
 BRANCH=master
 
 if ! [ -z $STAGE ]; then
-  curl https://raw.githubusercontent.com/alces-software/$APPLIANCE/$BRANCH/install/bin/stage$STAGE.sh | /bin/bash -x
+  if [ $STAGE -ne 4 ]; then
+    curl https://raw.githubusercontent.com/alces-software/$APPLIANCE/$BRANCH/install/bin/stage$STAGE.sh | /bin/bash -x
+  fi
 fi
 
 case $STAGE in
 1)
-echo "STAGE=2" > /var/run/symphony-stage
+echo "STAGE=2" > /var/lib/symphony-stage
 ;;
 2)
-echo "STAGE=3" > /var/run/symphony-stage
+echo "STAGE=3" > /var/lib/symphony-stage
 ;;
-*)
-echo "" > /var/run/symphony-stage
+3)
+echo "STAGE=4" > /var/run/symphony-stage
 ;;
 esac
 
 if ! [ -z $STAGE ]; then
-  shutdown -r now
+  if [ $STAGE -ne 4 ]; then
+    shutdown -r now
+  fi
 fi
