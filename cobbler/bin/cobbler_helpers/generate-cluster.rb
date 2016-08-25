@@ -104,7 +104,7 @@ class Server
 
 
 		# Setting machine serial
-		if config["HOSTTYPE"] == "vm"
+		if @config["HOSTTYPE"] == "vm"
 			cobbler_command("cobbler system edit --name #{@name} --in-place --ksmeta=\"serial=\'ttyS0,115200n8\'\"")
 		else
 			cobbler_command("cobbler system edit --name #{@name} --in-place --ksmeta=\"serial=\'ttyS1,115200n8\'\"")
