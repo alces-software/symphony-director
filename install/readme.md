@@ -14,7 +14,7 @@
 - ssh to external IP, default symphony key is in Google Drive
 
 ## Stage 1,2,3 install scripts
-- run staged installer scripts, reboot between each one eg:
-``` curl https://raw.githubusercontent.com/alces-software/symphony-director/master/install/bin/stage1.sh | /bin/bash -x```
+- run staged installer script, (reboots between each stage) eg:
+``` curl https://raw.githubusercontent.com/alces-software/symphony-`hostname -s`/master/install/bin/install.sh | /bin/bash -x```
 
 
