@@ -6,7 +6,7 @@ require 'yaml'
 require 'open3'
 require 'logger'
 
-$logger = Logger.new(File.open(Time.new.strftime("Server_gen_%Y-%m-%d_%H:%M:%S") + '.log', 'w+'))
+$logger = Logger.new(File.open("#{Dir.pwd}/logs/Server_gen_" + Time.new.strftime("%Y-%m-%d_%H:%M:%S") + '.log', 'w+'))
 
 class Server
 	def initialize(name, template, ip3, ip4, mac)
