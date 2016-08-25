@@ -64,7 +64,7 @@ class Server
 				@config[slaves].each {
 					|slave|
 
-					cobbler_command("cobbler system edit --name #{server_name} --interface #{slave} --interface-type=bridge_slave --interface-master=#{bridge}")
+					cobbler_command("cobbler system edit --name #{@name} --interface #{slave} --interface-type=bridge_slave --interface-master=#{bridge}")
 				}
 			end
 		end
@@ -100,14 +100,14 @@ class Server
 
 
 		# Setting machine disk
-		cobbler_command("cobbler system edit --name #{server_name} --netboot=1 --in-place --ksmeta=\"disklayout=\'#{config["DISKLAYOUT"]}\' disk1=\'#{config["DISK"]}\'\"")
+		cobbler_command("cobbler system edit --name #{@name} --netboot=1 --in-place --ksmeta=\"disklayout=\'#{@config["DISKLAYOUT"]}\' disk1=\'#{@config["DISK"]}\'\"")
 
 
 		# Setting machine serial
 		if config["HOSTTYPE"] == "vm"
-			cobbler_command("cobbler system edit --name #{server_name} --in-place --ksmeta=\"serial=\'ttyS0,115200n8\'\"")
+			cobbler_command("cobbler system edit --name #{@name} --in-place --ksmeta=\"serial=\'ttyS0,115200n8\'\"")
 		else
-			cobbler_command("cobbler system edit --name #{server_name} --in-place --ksmeta=\"serial=\'ttyS1,115200n8\'\"")
+			cobbler_command("cobbler system edit --name #{@name} --in-place --ksmeta=\"serial=\'ttyS1,115200n8\'\"")
 		end
 
 
