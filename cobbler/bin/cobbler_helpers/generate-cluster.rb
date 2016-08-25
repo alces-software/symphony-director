@@ -298,8 +298,8 @@ end
 
 if ! ARGV[0] == nil
 	build_cluster(ARGV[0])
-elsif File.file?("#{Dir.pwd}/example.yml")
-	build_cluster(YAML.load_file("#{Dir.pwd}/example.yml"))
+elsif File.file?("#{Dir.pwd}/config.yml")
+	build_cluster(YAML.load_file("#{Dir.pwd}/config.yml"))
 else
 	puts "There is no configuration file supplied."
 end
