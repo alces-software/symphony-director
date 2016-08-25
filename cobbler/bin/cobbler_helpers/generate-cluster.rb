@@ -295,8 +295,18 @@ def build_cluster(config)
 	end
 end
 
-config = YAML.load_file("#{Dir.pwd}/example.yml")
 
-build_cluster(config)
+if ! ARGV[0] == nil
+	build_cluster(ARGV[0])
+elsif File.file?("#{Dir.pwd}/example.yml")
+	build_cluster(YAML.load_file("#{Dir.pwd}/example.yml"))
+else
+	puts "There is no configuration file supplied."
+end
+
+
+# config = YAML.load_file("#{Dir.pwd}/example.yml")
+
+# build_cluster(config)
 
 
