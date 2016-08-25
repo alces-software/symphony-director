@@ -100,20 +100,15 @@ class Server
 
 
 		# Setting machine disk
-		disk_layout = "'#{@config["DISKLAYOUT"]}'"
-		disk = "'#{@config["DISK"]}'"
+		cobbler_command("cobbler system edit --name #{server_name} --netboot=1 --in-place --ksmeta=\"disklayout=\'#{config["DISKLAYOUT"]}\' disk1=\'#{config["DISK"]}\'\"")
 
-		cobbler_command('cobbler system edit --name #{@name} --netboot=1 --in-place --ksmeta="disklayout=disk_layout disk1=disk"')
 
 		# Setting machine serial
-		if @config["HOSTTYPE"] == "vm"
-			serial = "'ttyS0,115200n8'"
+		if config["HOSTTYPE"] == "vm"
+			cobbler_command("cobbler system edit --name #{server_name} --in-place --ksmeta=\"serial=\'ttyS0,115200n8\'\"")
 		else
-			serial = "'ttyS1,115200n8'"
+			cobbler_command("cobbler system edit --name #{server_name} --in-place --ksmeta=\"serial=\'ttyS1,115200n8\'\"")
 		end
-
-		cobbler_command('cobbler system edit --name #{@name} --in-place --ksmeta="serial=#{serial}"')
-		
 
 
 		# Setting Disk 2 if one has been specified
