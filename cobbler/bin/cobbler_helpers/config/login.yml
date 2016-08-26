@@ -22,9 +22,4 @@ DISKLAYOUT: default
 #usually sda for a hw machines or vda for a vm
 DISK: sda
 #Leave blank if none (used for multidisk layouts)
-DISK2: 
-
-#Bonding
-#BONDS: "bond0"
-#bond0SLAVES: "p2p1 em1"
-#bond0OPTIONS: "mode: 1 miimon: 80 primary: p2p1"
+DISK2:
