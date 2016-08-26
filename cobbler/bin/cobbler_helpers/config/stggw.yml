@@ -29,5 +29,7 @@ DISK2:
 
 #Bonding
 BONDS: "bond0"
-bond0SLAVES: "p2p1 p2p2"
+bond0SLAVES:
+	- p2p1
+	- p2p2
 bond0OPTIONS: "miimon=100 mode=4 lacp_rate=1"

@@ -28,5 +28,7 @@ DISK2:
 
 #Bonding
 BONDS: "bond0"
-bond0SLAVES: "em1 em2"
+bond0SLAVES:
+	- em1
+	- em2
 bond0OPTIONS: "miimon=100 mode=4 lacp_rate=1"

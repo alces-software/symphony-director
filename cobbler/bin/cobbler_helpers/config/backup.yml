@@ -28,5 +28,7 @@ DISK2:
 
 #Bonding
 BONDS: "bond0"
-bond0SLAVES: "em1 em2"
+bond0SLAVES:
+	- em1
+	- em2
 bond0OPTIONS: "mode=1 miimon=80 primary=em1"
