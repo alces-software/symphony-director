@@ -80,7 +80,7 @@ username-as-common-name
 plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so openvpn-manage
 EOF
 
-FQDN=`director.$CLUSTER.compute.estate`
+FQDN="director.$CLUSTER.compute.estate"
 cat << EOF > /etc/openvpn/manage.client.conf
 client
 dev tun
