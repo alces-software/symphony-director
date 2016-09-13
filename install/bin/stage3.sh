@@ -29,3 +29,9 @@ if [ $DASH -gt 0 ]; then
   sed -i -e "s/your cluster/$CLUSTER/g" /opt/symphony-management-dashboard/htdocs/index.html
 fi
 ############# END DASH ###################
+
+############# START CLEANUP ##############
+sed -i '/.*ephemeral0.*/d' /etc/fstab &&
+    systemctl reset-failed
+history -c
+############# END CLEANUP ################
