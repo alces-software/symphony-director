@@ -116,6 +116,9 @@ systemctl disable cloud-final
 systemctl disable cloud-config
 systemctl disable cloud-init-local
 
+#Cleanup /var/lib/cloud for root password entries
+rm -rf /var/lib/cloud
+
 echo "root:${ROOTPASSWORD}" | chpasswd
 
 #Allow root login with keys
